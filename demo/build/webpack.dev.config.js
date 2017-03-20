@@ -8,6 +8,11 @@ config.output.publicPath = '/';
 config.devtool="cheap-module-eval-source-map";  
 
 config.plugins = [
+    new webpack.DefinePlugin({
+      'process.env':  {
+               NODE_ENV: '"development"'
+           }
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
