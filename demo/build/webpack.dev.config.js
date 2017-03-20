@@ -1,4 +1,5 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
 var webpack = require("webpack")
 // 引入基本配置
@@ -26,6 +27,11 @@ config.plugins = [
             warnings: false
           },
           sourceMap: true
+        }),
+    new ExtractTextPlugin({
+            filename: "[name].[hash:6].css",
+            disable: false,
+            allChunks: true
         })
 ];
 

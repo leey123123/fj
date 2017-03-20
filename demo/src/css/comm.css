@@ -223,7 +223,6 @@ header {
 
 .home_i,
 header section:first-child a i {
-
   /*endref*/
   background-size: 4rem auto;
   width: 0.4rem;
@@ -342,7 +341,6 @@ i.short {
   color: #111; }
 
 input.dele:hover {
-
   /*endref*/
   width: 100%;
   display: inline-block;
@@ -360,7 +358,6 @@ input.dele:hover {
 
 .c_ico2 {
   display: block;
-
   /*endref*/
   background-size: 4rem auto;
   width: 0.2rem;
@@ -424,7 +421,6 @@ i.fail_ico {
   right: .3rem;
   top: 50%;
   margin-top: -0.16rem;
-
   /*endref*/
   background-size: 4rem auto;
   width: 0.35rem;

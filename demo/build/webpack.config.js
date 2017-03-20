@@ -39,11 +39,17 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                fallbackLoader: "style-loader",
-                loader: "css-loader"
-            })
-                /*'style-loader!css-loader'*/
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: {
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: false
+                        }
+                    }
+                })
+                //loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
+                
             }
         ]
     },
@@ -65,6 +71,10 @@ module.exports = {
             template: path.resolve(__dirname, '../src/index.html'),
             inject: true
         }),
-        new ExtractTextPlugin("[name].[hash:6].css")
+        new ExtractTextPlugin({
+            filename: "[name].[hash:6].css",
+            disable: false,
+            allChunks: true
+        })
     ]
 }

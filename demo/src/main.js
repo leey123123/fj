@@ -3,8 +3,7 @@ var baseConf = {};
 if(env === 'production'){
   baseConf.url = "123";
 }else{
-  import 
-  baseConf.url = "http://127.0.0.1:8091/servlet";
+  baseConf.url = "";
 }
 baseConf.option = {
                     method:'GET',
@@ -12,14 +11,15 @@ baseConf.option = {
                     data:{},
                     emulateJSON: true
                     };
+import './mock/mockdata'
 import Vue from 'vue'
 import router from './router'
 import VueReource from 'vue-resource'
 import App from './app'
 import './css/comm.css'
-
 Vue.use(VueReource);
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+window.baseConf = baseConf;
 
 /* eslint-disable no-new */
 new Vue({
