@@ -6,10 +6,9 @@ import App from './app'
 import './css/comm.css'
 Vue.use(VueReource);
 Vue.config.productionTip = false;
+Vue.http.options.emulateJSON = true;
 
 Vue.http.interceptors.push((request, next) => {
-  request.method = 'POST';
-  request.emulateJSON=true;
 　next((response) => {
     　　response.body = '...';
 　　　　return response;
@@ -27,8 +26,7 @@ if(env === 'production'){
 baseConf.option = {
                     method:'GET',
                     url:'',
-                    data:{},
-                    emulateJSON: true
+                    data:{}
                     };
 
 

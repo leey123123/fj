@@ -6,10 +6,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
   {
-      path: '/a',
-      name: 'a',
+      path: '/queryBind',
+      name: 'QueryBind',
       component: function (resolve) {
-           require(['./components/a'],resolve)
+           require(['./components/queryBind'],resolve)
          }
   },
     {

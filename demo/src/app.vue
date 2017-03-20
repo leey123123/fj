@@ -10,6 +10,14 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data:function(){
+    return {
+        id:""
+    }
+  },
+  created:function(){
+
+  }
 }
 </script>

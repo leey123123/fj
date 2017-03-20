@@ -7,7 +7,7 @@ export default Mock.mock('http://g.cn',
     
         "errorcode": "0",
         "errormsg": "调用成功",
-        "body": {
+        "result": {
             "applylist|10": [
                 {
                     "applyid|+1": 10000000,
@@ -17,6 +17,14 @@ export default Mock.mock('http://g.cn',
                     "applystatus": "0"
                 }
             ]
+        }
+    
+    }).mock('http://getappid.cn',{
+    
+        "errorcode": "0",
+        "errormsg": "调用成功",
+        "result": {
+            "appid":"12312341234"
         }
     
     });
