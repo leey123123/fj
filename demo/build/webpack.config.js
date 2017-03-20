@@ -2,6 +2,8 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     // 入口文件，path.resolve()方法，可以结合我们给定的两个参数最后生成绝对路径，最终指向的就是我们的index.js文件
@@ -34,6 +36,14 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader?presets=es2015',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract({
+                fallbackLoader: "style-loader",
+                loader: "css-loader"
+            })
+                /*'style-loader!css-loader'*/
             }
         ]
     },
@@ -54,6 +64,7 @@ module.exports = {
             filename: '../index.html',
             template: path.resolve(__dirname, '../src/index.html'),
             inject: true
-        })
+        }),
+        new ExtractTextPlugin("[name].[hash:6].css")
     ]
 }
