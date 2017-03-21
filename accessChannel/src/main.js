@@ -1,9 +1,10 @@
 import './mock/mockdata'
 import Vue from 'vue'
+import FastClick from 'fastclick'
 import router from './router'
 import VueReource from 'vue-resource'
 import App from './app'
-import './css/comm.css'
+FastClick.attach(document.body)
 Vue.use(VueReource);
 Vue.config.productionTip = false;
 Vue.http.options.emulateJSON = true;
@@ -20,15 +21,7 @@ Vue.http.interceptors.push((request, next) => {
   });
 });
 
-var env = process.env.NODE_ENV
-/*var baseConf = {};
-if(env === 'production'){
-  baseConf.url = "";
-}else{
-  url = "";
-}
-window.baseConf = baseConf;
-*/
+//var env = process.env.NODE_ENV
 
 
 

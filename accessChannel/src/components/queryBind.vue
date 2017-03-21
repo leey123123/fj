@@ -4,7 +4,13 @@ checkbind
     </div>
 </template>
 <script type="text/javascript">
+    import Toast from 'mint-ui/lib/Toast';
+    import 'mint-ui/lib/Toast/style.css';
+
+    
+     
     export default{
+        
         data:function(){
             return{
 
@@ -14,10 +20,11 @@ checkbind
             'getArticle':function(option){
                 var vm = this;
                 this.$http(option).then(function(data){
-                 
+                   Indicator.open();
                     data = data.data;
                     /*data = JSON.parse(data);*/
                     console.log(data);
+                    //Toast('提示信息sgyesgsdgfruhrsawrefwaefrafgdsfasdfgegssdfg三等功但是公司的法国队谁');
                 
                 
             }).catch(function(data){                
@@ -33,6 +40,7 @@ checkbind
                 }
                 this.$http(option).then(function(data){
                     console.log(data);
+                    
             
                 
             }).catch(function(data){                
@@ -58,6 +66,10 @@ checkbind
                 vm.getArticle(option);
               
             }
-        }
+        },
+        components:{
+            'Toast':Toast,
+            'Indicator':Indicator
+        },
     }
 </script>
