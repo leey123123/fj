@@ -1,0 +1,264 @@
+.info-box-bg {
+    background-color: #fff;
+}
+.info-box {
+    padding: 0rem .5rem;
+}
+.info-box-home .info-input input {
+    margin-left: 0;
+}
+.info-input {
+    position: relative;
+    border-bottom: solid 2px #dddddd;
+    padding: 0.2rem;
+}
+.info-input:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 2px;
+    height: 4px;
+    background-color: #ddd;
+}
+.info-input:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    width: 2px;
+    height: 4px;
+    background-color: #ddd;
+}
+.info-input.error {
+    border-bottom: solid 2px #ff6000;
+}
+.info-input.error .info-error-msg {
+    color: #ff6600;
+    display: block;
+}
+
+.info-input.error:before, .info-input.error:after {
+    background-color: #ff6000;
+}
+
+.info-input input {
+    background-color: transparent;
+    font-size: 0.34rem;
+    color: #333333;
+    width: 60%;
+    margin-left: 1.6rem;
+    height: .4rem; 
+    line-height: .4rem; 
+}
+.info-input .current-select {
+    background-color: transparent;
+    font-size: 0.34rem;
+    color: #c6c6c6;
+    width: 60%;
+    margin-left: 1.6rem;
+    height: .4rem; 
+    line-height: .4rem; 
+}
+.info-input .current-select .active {
+    color: #333;
+}
+.info-input input::-webkit-input-placeholder {
+    color:#c6c6c6;
+    font-size: 0.34rem;
+}
+.info-input input:-moz-placeholder {
+    color:#c6c6c6;
+    font-size: 0.34rem;
+}
+.info-input .info-error-msg {
+    position: absolute;
+    right: 0;
+    bottom: -0.5rem;
+    font-size: 0.24rem;
+    display: none;
+}
+.info-input .info-input-clear {
+    position: absolute;
+    width: 0.4rem;
+    right: 0.2rem;
+    top: 0.2rem;
+    display: none;
+}
+.info-input .info-code {
+    color: #ff6600;
+    position: absolute;
+    right: 0.2rem;
+    bottom: 0.2rem;
+}
+.info-input .info-code .code-img {
+    width: 65px;
+    height: 25px;
+}
+.info-input .info-title {
+    color: #666;
+    font-size: 0.3rem;
+    position: absolute;
+    left: 0.2rem;
+    top: 0.2rem;
+}
+.info-radio-box {
+    text-align: center;
+}
+.info-radio-box input.radio[type=radio] {
+    width: 20%;
+    border: none;
+    background: url(../images/info-checkbox-no.png) no-repeat transparent left center;
+    background-size: 0.4rem;
+    color: #666;
+    display: inline-block;
+    float: none;
+    margin: 0 0.6rem;
+}
+.info-radio-box input.radio[type=radio]:checked {
+    color: #fd7927;
+    background-image: url(../images/info-checkbox-yes.png);
+}
+.info-radio-box input.radio[type=radio]:after {
+    left: 0.3rem;
+    top: 0.05rem;
+    font-size: 0.36rem;
+}
+.info-checkbox  {
+    display: block;
+    position: relative;
+    padding-left: 0.5rem;
+}
+.info-checkbox input.checkbox {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0.4rem;
+    height: 0.4rem;
+    border: none;
+    border-radius: 0;
+    background: url(../images/info-checkbox-no.png) no-repeat transparent left center;
+    background-size: cover;
+}
+.info-checkbox input.checkbox:checked{
+    background-image: url(../images/info-checkbox-yes.png);
+}
+.info-checkbox input.checkbox:after {
+    display: none;
+}
+.info-btn-next img {
+    width: 40%;
+}
+
+.info-tip {
+    background-color: #efefef;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.24rem;
+    border-bottom: solid 1px #ccc;
+}
+
+.info-question li {
+    margin-top: 0.3rem;
+}
+
+.info-question li:first-child {
+    color: #666;
+}
+
+.info-margin-top {
+    margin-top: 0.6rem;
+}
+.info-margin {
+    margin: 0.6rem 0;   
+}
+.info-line {
+    height: 1px;
+    background-color: #f3f3f3;
+}
+.info-result-img1 {
+    width: 40%;
+}
+.info-result-img2 {
+    width: 50%;
+}
+.info-result-text {
+    font-size: 0.36rem;
+    margin-top: 0.2rem;
+}
+.info-result-text2 {
+    font-size: 0.24rem;
+}
+.info-result-text2 p:last-child {
+    margin-top: 0.2rem;
+}
+
+
+
+
+
+
+.sel_list {
+    background:#404040;
+    position:absolute;
+    position:fixed;
+    left:0;
+    bottom:0;
+    height:4rem;
+    width:100%;
+    z-index:300000;
+    display: none;
+}
+.sel_list .sel_info {
+    font-size: 0.36rem;
+    background: #707070;
+    color: #696969;
+    overflow: hidden;
+    line-height: 0.72rem;
+    padding: 0 0.4rem;
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    z-index: 9;
+}
+.sel_list .sel_info a {
+    color: #fff;
+}
+.cancel {
+    float: left;
+}
+.done {
+    float: right;
+}
+.sel_list ul {
+    height:4rem;
+    overflow:scroll;
+    overflow-x:hidden;
+    padding-top: 0.72rem;
+    box-sizing: border-box;
+}
+.sel_list ul li {
+    text-align:center;
+    color:#696969;
+    font-size: 0.36rem;
+    line-height: 1rem;
+}
+.sel_list ul li.active {
+    color:#fff;
+    font-size: 0.6rem;
+}
+.chengshi-list ul {
+    width: 50%;
+    float: left;
+}
+
+
+
+select#cityN{ 
+  width: 100%;
+  height: 0.4rem;
+  -webkit-appearance: none;
+  padding-right: 14px;
+  color: black;
+  background: url(../images/arrow.png) 100% 50% no-repeat scroll transparent;
+}

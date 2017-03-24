@@ -9,7 +9,7 @@ export default {
   name: 'app',
   data:function(){
     return {
-        id:""
+        
     }
   },
   created:function(){
