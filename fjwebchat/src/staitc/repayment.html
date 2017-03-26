@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>static page</title>
+    <script type="text/javascript">
+    //初始化界面缩放和根节点字体像素大小
+    var __root = document.documentElement,
+        viewport = __root.querySelector("meta[name='viewport']"),
+        scale = 1 / window.devicePixelRatio,
+        content = "width=device-width,initial-scale=" + scale + ",user-scalable=0";
+
+    viewport.setAttribute("content", content);
+
+    var baseWidth = 720,
+        baseFontSize = 100,
+        calFontSize = parseInt(__root.clientWidth) / baseWidth * baseFontSize;
+
+    __root.style.fontSize = calFontSize + "px";
+    </script>
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="page-hd">
+            <div class="message-panel">
+                <p>请于还款日当天<span class="message-danger">9:00</span>前保证还款卡余额充足，等待系统自动扣款，以免逾期产生罚息并影响征信记录。</p>
+            </div>
+        </div>
+        <div class="page-bd">
+            <div class="fold-panel">
+                <div class="fold-panel-hd">
+                    <div class="weui-flex ">
+                        <div class="weui-flex__item">
+                            <div class="fold-panel-title">当前应用</div>
+                        </div>
+                        <div class="repayment-amount">
+                            906.35
+                        </div>
+                    </div>
+                </div>
+                <div class="fold-panel-bd">
+                    <div class="fold-panel-detail ">
+                        <div class="detail-toolbar">
+                            <div class="title">详细信息</div>
+                            <div class="fold-button"></div>
+                        </div>
+                        <div class="detail-list">
+                            <p>罚息<span>54.21</span></p>
+                            <p>管理费<span>4.88</span></p>
+                            <p>应还本息<span>847.38</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fold-panel prepayment">
+                <div class="fold-panel-hd">
+                    <div class="weui-flex ">
+                        <div class="weui-flex__item">
+                            <div class="fold-panel-title">提前结清还款金额</div>
+                        </div>
+                        <div class="repayment-amount">
+                            906.35
+                        </div>
+                    </div>
+                </div>
+                <div class="fold-panel-bd">
+                    <div class="fold-panel-detail open">
+                        <div class="detail-toolbar">
+                            <div class="title">详细信息</div>
+                            <div class="fold-button"></div>
+                        </div>
+                        <div class="detail-list">
+                            <p>罚息<span>54.21</span></p>
+                            <p>管理费<span>4.88</span></p>
+                            <p>应还本息<span>847.38</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="repayment-time-bank">
+                <ul>
+                    <li>
+                        还款日期
+                        <span>每月<b class="fj-text-normal">25</b>日</span>
+                    </li>
+                    <li>
+                        还款银行卡
+                        <span>招商银行(5567)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-ft">
+        </div>
+    </div>
+</body>
+
+</html>

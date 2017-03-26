@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>static page</title>
+    <script type="text/javascript">
+    //初始化界面缩放和根节点字体像素大小
+    var __root = document.documentElement,
+        viewport = __root.querySelector("meta[name='viewport']"),
+        scale = 1 / window.devicePixelRatio,
+        content = "width=device-width,initial-scale=" + scale + ",user-scalable=0";
+
+    viewport.setAttribute("content", content);
+
+    var baseWidth = 720,
+        baseFontSize = 100,
+        calFontSize = parseInt(__root.clientWidth) / baseWidth * baseFontSize;
+
+    __root.style.fontSize = calFontSize + "px";
+    </script>
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+</head>
+
+<body>
+    <div class="page submit-progress">
+        <div class="page-bd">
+            <div class="weui-cells submit-progress">
+                <div class="weui-cell completed">
+                    <div class="weui-cell__hd">
+                        <div class="progress-line"></div>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <p class="submit-status">提交成功</p>
+                        <p class="submit-detail">406.11元</p>
+                        <p class="submit-detail">xx银行(尾号3366)张三</p>
+                    </div>
+                </div>
+                <div class="weui-cell ">
+                    <div class="weui-cell__hd">
+                        <div class="progress-line"></div>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <p class="submit-status">还款成功</p>
+                        <p class="submit-detail">今天到账(最晚24::00)</p>
+                        <p class="submit-detail">银行延后1-2日更新还款结果</p>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:;" class="weui-btn weui-btn_default">完成</a>
+        </div>
+    </div>
+</body>
+
+</html>

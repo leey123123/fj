@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>static page</title>
+    <script type="text/javascript">
+    //初始化界面缩放和根节点字体像素大小
+    var __root = document.documentElement,
+        viewport = __root.querySelector("meta[name='viewport']"),
+        scale = 1 / window.devicePixelRatio,
+        content = "width=device-width,initial-scale=" + scale + ",user-scalable=0";
+
+    viewport.setAttribute("content", content);
+
+    var baseWidth = 720,
+        baseFontSize = 100,
+        calFontSize = parseInt(__root.clientWidth) / baseWidth * baseFontSize;
+
+    __root.style.fontSize = calFontSize + "px";
+    </script>
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <style type="text/css">
+    	a{
+    		font-size: .5rem;
+    	}
+    	li{
+    		line-height: 1;
+    	}
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <ul>
+        	<li>
+        		<a href="login.html">登录</a>
+        	</li>
+        	<li>
+        		<a href="error.html">错误提示</a>
+        	</li>
+        	<li>
+        		<a href="bind_success.html">绑定成功</a>
+        	</li>
+        	<li>
+        		<a href="apply_list.html">申请进度列表</a>
+        	</li>
+        	<li>
+        		<a href="apply_detail.html">申请记录详情</a>
+        	</li>
+        	<li>
+        		<a href="repayment.html">还款</a>
+        	</li>
+        	<li>
+        		<a href="repayment_detail.html">还款详情</a>
+        	</li>
+        	<li>
+        		<a href="submit.html">还款成功</a>
+        	</li>
+            <li>
+                <a href="apply_trans.html">转账申请</a>
+            </li>
+        	<li>
+        		<a href="apply_trans_success.html">申请转账还款提交成功</a>
+        	</li>
+        	<li>
+        		<a href="add_bankcard_number.html">增加新的银行卡</a>
+        	</li>
+        	<li>
+        		<a href="confirm_bankcard.html">确认银行卡信息和验证码</a>
+        	</li>
+            <li>
+                <a href="repayment_now.html">立即还款按钮跳转界面</a>
+            </li>
+            <li>
+                <a href="confirm_bankcard_number.html">确认还款银行卡号</a>
+            </li>
+            <li>
+                <a href="repayment_now_0.html">立即还款应还为0</a>
+            </li>
+        	<li>
+        		<a href="ui.html">部分控件</a>
+        	</li>
+        </ul>
+    </div>
+</body>
+
+</html>
