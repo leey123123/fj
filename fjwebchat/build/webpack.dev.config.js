@@ -6,8 +6,8 @@ var webpack = require("webpack")
 var config = require('./webpack.config');
 
 config.output.publicPath = '/';
-//config.devtool="cheap-module-eval-source-map";  
-config.devtool=false;  
+config.devtool="cheap-module-eval-source-map";  
+//config.devtool=false;  
 
 
 config.plugins = [
@@ -28,7 +28,7 @@ config.plugins = [
           compress: {
             warnings: false
           },
-          sourceMap: false
+          sourceMap: true
         }),
     new ExtractTextPlugin({
             filename: "[name].[hash:6].css",
