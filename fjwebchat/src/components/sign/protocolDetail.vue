@@ -86,7 +86,10 @@ export default{
         sign:function(){
             var canvas = document.getElementById('signcan');
             this.resizeCanvas(canvas);
-            this.signaturePad = new sign(canvas);
+            this.signaturePad = new sign(canvas,{
+                minWidth:2,
+                maxWidth:5
+            });
         },
         showSign:function(){
             if(this.signaturePad===""||this.signaturePad===undefined){
@@ -217,15 +220,12 @@ export default{
 
 @media screen and (max-width: 1024px) {
   .m-signature-pad {
-    top: 0;
-    left: 0;
-    right: 0;
+    position: fixed;
     bottom: 0;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 40%;
     min-width: 250px;
     min-height: 140px;
-    margin: 5%;
   }
   #github {
     display: none;
@@ -233,9 +233,9 @@ export default{
 }
 
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  .m-signature-pad {
+  /* .m-signature-pad {
     margin: 10%;
-  }
+  } */
 }
 
 @media screen and (max-height: 320px) {
