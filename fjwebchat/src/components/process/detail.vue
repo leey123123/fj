@@ -21,9 +21,9 @@
                     <div class="progress-time">
                         2016/12/03 12:38:47
                     </div>
-                </div -->>
-                <div v-for="(item,index) in list" :class="{index===1?'completed':'','weui-flex'}">
-                    <div class="weui-flex__item ">
+                </div -->
+                <div v-for="(item,index) in list" :class="[index===0?'completed':'','weui-flex']">
+                    <div class="weui-flex__item">
                         <div class="progress-descript">{{item.stateName}}</div>
                     </div>
                     <div class="progress-time">
@@ -52,13 +52,13 @@ export default{
         }
     },
     beforeCreate:function(){
-        var loanId = this.$route.query.loanId;
+        var loanId = this.$route.query.loainid;
          var option = {};
                     option.url = "http://localhost:8888/process/query/"+loanId;
-                    option.params = {user_id:user_id};
+                    option.params = {};
                     option.before = function(){
                     }
-                    Vue.http(option).then(function(data){
+                    this.$http(option).then(function(data){
                         var data = data.body;
                         var errorcode = data['errorCode'];
                         var message = data['message'];

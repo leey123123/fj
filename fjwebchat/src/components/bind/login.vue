@@ -5,9 +5,9 @@
                 <div class="weui-flex__item ">
                     <div class="wx-info">
                         <div class="avatar">
-                            <img src="">
+                            <img :src="urlimg">
                         </div>
-                        <div class="name">哈利路亚</div>
+                        <div class="name">{{nickname}}</div>
                     </div>
                 </div>
             </div>
@@ -51,6 +51,8 @@
     export default{
         data : function(){
             return {
+                nickname:"",
+                urlimg:"",
                 timer:"",
                 num:120,
                 phoneclear:'none',
@@ -214,6 +216,15 @@
           },
         components:{
             
+        },
+        created:function(){
+            var code = sessionStorage.getItem("code");
+            var wxMes = sessionStorage.getItem("wxMes");
+            var mes = secret.Decrypt(wxMes,code); 
+            var mesArray = mes.split("|");
+            this.urlimg = mesArray[2];
+            this.nickname = mesArray[1];
+
         }
     }
 </script>

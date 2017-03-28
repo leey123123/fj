@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueReource from 'vue-resource'
-Vue.use(VueReource);
 
 
 
@@ -12,7 +11,7 @@ Vue.use(VueReource);
      * 
      */
     
-Vue.prototype.$checkBind = function(param,bindedCall){
+Vue.prototype.$checkBind = function(param,bindedCall,unBindCall){
     var state = param.state;//状态
     var url = param.url;//回调地址
     var code = param.code;
@@ -87,7 +86,7 @@ Vue.prototype.$checkBind = function(param,bindedCall){
                 var wxMesSecret = secret.Encrypt(wxMes,code);
                 sessionStorage.setItem("wxMes",wxMesSecret);
                 sessionStorage.setItem("code",code);
-                Vue.router.push({name:'login'});
+                unBindCall();
             }else{//查询异常
                 Toast({
                   message: "检查绑定关系异常",

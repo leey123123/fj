@@ -21,6 +21,11 @@ export default new Router({
       component: function (resolve) {require(['./components/process/list'],resolve)},
     },
     {
+      path: '/process/detail',
+      name: 'processDetail',
+      component: function (resolve) {require(['./components/process/detail'],resolve)},
+    },
+    {
       path: '/protoDetail',
       name: 'protoDetail',
       component: function (resolve) {require(['./components/sign/protocolDetail'],resolve)},

@@ -69,7 +69,7 @@ export default Mock.mock('http://localhost:8888/sendmes?phone=12222222222',
                 }
             ]
     
-    }).mock('http://localhost:8888/process/query?user_id=1',{//查询列表成功
+    }).mock('http://localhost:8888/process/query?user_id=123123',{//查询列表成功
     
         "errorCode": "0",
         "message": "调用成功",
@@ -88,5 +88,22 @@ export default Mock.mock('http://localhost:8888/sendmes?phone=12222222222',
         "errorCode": "-11",
         "message": "调用失败",
         "data": []
+    
+    }).mock('http://localhost:8888/process/query/1000000',{//查询列表失败
+    
+        "errorCode": "0",
+        "message": "调用成功",
+        "data":{
+            "productName":"@name",
+            "loanId":10000000
+        },
+        "list|3": [
+              {
+                    "stateName":"@name",
+                    "stateTime": "@date @time"
+
+                }  
+
+            ]
     
     });

@@ -5,10 +5,10 @@
                 <div class="weui-cell__bd">
                     <p>{{item.productName}}</p>
                     <p>{{item.loanId}}</p>
-                    <p>状态:<span class="apply-status">{{item.currentState|toStatusName}}</span></p>
+                    <p>状态:<span class="apply-status">{{toStatusName(item.currentState)}}</span></p>
                 </div>
                 <div class="weui-cell__ft">
-                    <p>{{item.currentState}}</p>
+                    <p>{{item.applyDate}}</p>
                 </div>
             </a>
         <!--     <a class="weui-cell" href="javascript:;">
@@ -35,28 +35,31 @@
     </div>
 </template>
 <script>
-    var statusF={
-        "status_1":"审核中",
-        "status_2":"审核通过",
-        "status_3":"审核失败",
-        "status_4":"面签中",
-        "status_5":"面签是吧",
-    }
     export default{
         data:function(){
             return {
-                data:[]
+                data:[],
+                statusF:{
+                    "status_1":"审核中",
+                    "status_2":"审核通过",
+                    "status_3":"审核失败",
+                    "status_4":"面签中",
+                    "status_5":"面签是吧"
+                }
             }
         },
-        beforeCreate:function(){
+        created:function(){
            var code =  this.$route.query.code;
            var state =  this.$route.query.state;
+           var code='123';
+           var state='1213';
            var url = location.href;
            var param = {'code':code,'state':state,'url':url};
-           this.$checkBind(param,this.queryProcessList);
+           this.$checkBind(param,this.queryProcessList,this.unbind);
         },
         methods:{
             queryProcessList:function(){
+
                 var user_idS = sessionStorage.getItem("user_id");
                 var code = sessionStorage.getItem("code");
                 if(user_idS && user_idS){
@@ -67,7 +70,7 @@
                     option.params = {user_id:user_id};
                     option.before = function(){
                     }
-                    Vue.http(option).then(function(data){
+                    this.$http(option).then(function(data){
                         var data = data.body;
                         var errorcode = data['errorCode'];
                         var message = data['message'];
@@ -84,23 +87,24 @@
                         this.data = data.data;
                     
                     }).catch(function(data){                
-
+                        console.log('111');
                     });
                 }else{
                     this.$router.push({name:'fail'});
                 }
             },
             getDetail:function(loanId){
-                this.$router.push({name:'detail',query:{'loainid':loanId}});
+                this.$router.push({name:'processDetail',query:{'loainid':loanId}});
+            },
+            toStatusName:function(val){
+                var key = "status_"+val
+                return this.statusF[key];
+            },
+            unbind:function(){
+                this.$router.push({name:'login'});
             }
 
-        },
-        filter:{
-            toStatusName:function(val){
-                var key = "status_"+val;
-                return statusF[key];
-            }
-            }
+        }
     }
     
 </script>
