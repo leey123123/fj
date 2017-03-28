@@ -58,7 +58,7 @@
             <a href="javascript:;" class="weui-btn weui-btn_default confirm-button" @click="showSign()">签署协议</a>
         </div>
     </div> 
-    <div class="zzclass" @click="showSign()" v-show="popupVisible"></div> 
+    <div class="zzclass" @click="processzz()" v-show="popupVisible" ></div> 
     <transition name="popup-slide-bottom"
     v-on:after-enter="afterEnter"
     v-on:leave="leave">
@@ -76,14 +76,20 @@
             </div>
           </div>
       </transition>
+      <mt-popup v-model="alertPop" position="top" pop-transition="popup-fade" :modal="showzz" ><div class="alertcontent">{{alertcontent}}</div>    </mt-popup>
 </div>
 </template>
 <script>
 import sign from '../../js/signature_pad';
+import mtPopup from '../../commom/popup';
+import '../../commom/popup/style.css';
 export default{
     data:function(){
         return {
+            alertcontent:"",
+            showzz:false,
             popupVisible:false,
+            alertPop:false,
             signaturePad:"",
             tran:""
         }
@@ -106,6 +112,9 @@ export default{
             if (this.signaturePad.isEmpty()) {
                 alert("Please provide signature first.");
             } else {
+                this.alertPop=true;
+                this.alertcontent="调用成功";
+                setTimeout(this.hideAlertPop,1500);
                 console.log(this.signaturePad.toDataURL());
             }
         },
@@ -124,25 +133,41 @@ export default{
         leave:function(){
             this.clear();
         },
-
+        processzz:function(){
+            if(this.alertPop){
+                return;
+            }
+            this.showSign();
+        },
+        hideAlertPop:function(){
+            this.alertPop=false;
+        }
 
     },
-    created:function(){
-        //this.showSign();
+    components:{
+        'mtPopup':mtPopup
     }
 }
 
 </script>
 
 <style>
+.alertcontent{
+    font-size: .3rem;
+    color: #fdf5f5;
+    text-align: center;
+    padding-top: .3rem;
+}
 .zzclass{
-    height: 100%;
-    width: 100%;
     position: fixed;
-    z-index: 5;
-    bottom: 0;
     left: 0;
-    background-color: rgba(27, 22, 22, 0.16);
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: #000;
+    z-index: 5;
+
 }
 .popup-slide-bottom {
   position: fixed;
