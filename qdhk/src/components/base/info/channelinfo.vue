@@ -1,0 +1,77 @@
+<template>
+<div class="tap-info">
+    <ul class="apply-input-info changing-info">
+        <li>
+            <label>渠道公司ID</label>
+            <input type="text" name="" class="box_flex" :value="postdata.channelteamid" disabled>
+        </li>
+
+        <li>
+            <label>渠道公司</label>
+            <input type="text" name="" class="box_flex"  :value="postdata.channelteamname" disabled>
+        </li>
+
+
+        <li class="tel">
+            <label>渠道公司联系电话</label>
+             <div>
+                <input type="text" name="" maxlength="4" class="qh" :value="postdata.channelteamphonearea" disabled>
+                <i class="fh">-</i>
+                <input type="text" name=""  class="gh" :value="postdata.channelteamphone"  maxlength="10" disabled>
+            </div>
+        </li>
+
+        <li>
+            <label>渠道公司手机号码</label>
+            <input type="text" name=""  class="box_flex" :value="postdata.channelteammobilephone" disabled>
+        </li>
+
+        <li>
+            <label>渠道业务员姓名</label>
+            <input type="text" name="" class="box_flex"  :value="postdata.channelstaffname" disabled>
+        </li>
+
+        <li>
+            <label>渠道业务员电话</label>
+            <input type="text" name=""   class="box_flex" :value="postdata.channelstaffmobilephone" disabled>
+        </li>
+        
+    </ul>                
+</div>
+</template>
+<script>
+import mtPopup from '../../../commom/popup';
+import '../../../commom/popup/style.css';
+export default{
+    data:function(){
+        return{
+            postdata:{
+                channelteamid : '',
+                channelteamname : '',
+                channelteamphonearea : '',
+                channelteamphone : '',
+                channelteammobilephone : '',
+                channelstaffname : '',
+                channelstaffmobilephone : ''
+            }
+        }
+        
+        
+    },
+    created:function(){
+        var vm = this;
+        this.$parent.$parent.menutype=2;
+        this.$parent.childmenutype=6;
+        for(var x in vm.postdata){
+            vm.postdata[x] = this.getData(x);
+        }
+        
+
+    },
+    components:{
+        'mtPopup':mtPopup
+    }
+}
+
+    
+</script>
