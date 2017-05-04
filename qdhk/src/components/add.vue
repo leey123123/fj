@@ -361,7 +361,7 @@ export default{
           }
           var param = {};
           param.customername = vm.applyMes.customername;
-          param.mobilephone = vm.applyMes.mobiletelephone;
+          param.mobiletelephone = vm.applyMes.mobiletelephone;
           param.certplace = vm.applyMes.certplace;
           param.certstartdate = vm.applyMes.certstartdate;
           param.certmaturitydate = vm.applyMes.certmaturitydate;
@@ -404,7 +404,7 @@ export default{
             jsonto['birthday']  = tempjson['birthday'];
             jsonto['sex']  = tempjson['sex'];
             jsonto['certtype']  = 'Ind01';
-            jsonto['mobilephone']  = tempjson['mobiletelephone'];
+            jsonto['mobiletelephone']  = tempjson['mobiletelephone'];
             jsonto['certplace']  = tempjson['certplace'];
             jsonto['certstartdate']  = tempjson['certstartdate'];
             jsonto['certmaturitydate']  = tempjson['certmaturitydate'];
