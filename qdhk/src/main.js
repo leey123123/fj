@@ -41,12 +41,11 @@ Vue.http.interceptors.push((request, next) => {
   }
   
   var url = request.url;
-  var index = url.indexOf('function=')+9;
+/*  var index = url.indexOf('function=')+9;
   var functionStr = url.substr(index);
   if('SendAuthCode|UserLogin|GetDataDictionary'.toLowerCase().indexOf(functionStr.toLowerCase())===-1){
       var clientinfo = getCookie("clientinfo").replace("\"","").replace("\"","");
-      var currentTime = new Date().getTime().toString();
-      request.headers.set('v',currentTime);
+      
       param.v = currentTime;
       if(clientinfo){
         request.headers.set('clientinfo',clientinfo);
@@ -55,6 +54,9 @@ Vue.http.interceptors.push((request, next) => {
       }
       
   }
+*/  
+  var currentTime = new Date().getTime().toString();
+  request.headers.set('v',currentTime);
   request.body.param = encodeURIComponent(JSON.stringify(param));
   request.url = url+"&t="+Math.random();
   count++;
