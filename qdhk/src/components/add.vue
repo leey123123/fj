@@ -368,6 +368,8 @@ export default{
           param.certtype = 'Ind01';
           param.certid = vm.applyMes.certid;
           param.employeetype = vm.applyMes.employtypecode;
+          param.loansUsedNature = vm.applyMes.loansUsedNature;
+          param.nativeflag = vm.applyMes.nativeflag;
           param.sex = vm.applyMes.sex;
           param.birthday = vm.applyMes.birthday;
           param.roleid = vm.role.role;
@@ -408,6 +410,8 @@ export default{
             jsonto['certplace']  = tempjson['certplace'];
             jsonto['certstartdate']  = tempjson['certstartdate'];
             jsonto['certmaturitydate']  = tempjson['certmaturitydate'];
+            jsonto['nativeflag']  = tempjson['nativeflag'];
+            jsonto['loansUsedNature']  = tempjson['loansUsedNature'];
             jsonto['applyid']  = applyid;
             jsonto['dataAbled']  = false;
             var val = vm.extend(jsonto);
