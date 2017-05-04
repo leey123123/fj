@@ -14,11 +14,7 @@
 
         <li class="tel">
             <label>渠道公司联系电话</label>
-             <div>
-                <input type="text" name="" maxlength="4" class="qh" :value="postdata.channelteamphonearea" disabled>
-                <i class="fh">-</i>
-                <input type="text" name=""  class="gh" :value="postdata.channelteamphone"  maxlength="10" disabled>
-            </div>
+            <input type="text" name=""  class="box_flex" :value="postdata.channelteamphone" disabled>
         </li>
 
         <li>
@@ -48,7 +44,6 @@ export default{
             postdata:{
                 channelteamid : '',
                 channelteamname : '',
-                channelteamphonearea : '',
                 channelteamphone : '',
                 channelteammobilephone : '',
                 channelstaffname : '',

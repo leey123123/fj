@@ -21,12 +21,6 @@
                         </li>
                         <li>
                             <div class="box_vam box_flex">
-                                <p>是否本地户籍</p>
-                            </div>
-                            <mswitch v-model="radioChoice.natives">是</mswitch>
-                        </li>
-                        <li>
-                            <div class="box_vam box_flex">
                                 <p>是否有本地房产</p>
                             </div>
                             <mswitch v-model="radioChoice.house">是</mswitch>
@@ -42,7 +36,7 @@
                 <article class="plans-con">
                     <ul class="apply-input-info">
                         <li>
-                            <label>公积金月缴额度</label>
+                            <label>公积金月缴费</label>
                              <input type="text" name="" value="" class="box_flex nums-input thisinput" style="background: rgba(241, 237, 237, 0.0901961);" v-model="postdata.monthhousingfund"> 
                              <p class="apply-icon">元</p>
                         </li>
@@ -61,12 +55,6 @@
                                 <p>是否有本地房产</p>
                             </div>
                             <mswitch v-model="radioChoice.house">有</mswitch>
-                        </li>
-                        <li>
-                            <div class="box_vam box_flex">
-                                <p>是否本地户籍</p>
-                            </div>
-                            <mswitch v-model="radioChoice.natives">是</mswitch>
                         </li>
 
                         <li>
@@ -189,13 +177,11 @@ var commomState =[
                 index:0,
                 radioChoice:{
                     car:false,
-                    natives:false,
                     house:false
                 },
                 postdata:{
                     solutionlist:'',
                     islocallicenseplate:'0',//是否本地车牌
-                    nativeflag:'0',//是否本地户籍
                     localhouseflag:'0',//是否有本地房产
                     monthhousingfund:0,//公积金月缴额度
                     monthEndowmentInsurance:0,//社保月缴额度 
@@ -318,11 +304,9 @@ var commomState =[
                 if(pagedata.solutionlist){
                     if(pagedata.solutionlist.indexOf('0130')>-1){//车贷
                         postjson.islocallicenseplate=pagedata.islocallicenseplate;
-                        postjson.nativeflag=pagedata.nativeflag;
                         postjson.localhouseflag=pagedata.localhouseflag;                     
                     }else{
                         postjson.islocallicenseplate='';
-                        postjson.nativeflag='';
                         postjson.localhouseflag='';
                     }
                     if(pagedata.solutionlist.indexOf('0170')>-1){//公积金
@@ -331,12 +315,10 @@ var commomState =[
                         postjson.monthhousingfund=0;
                     }
                     if(pagedata.solutionlist.indexOf('0180')>-1){//社保
-                        postjson.nativeflag=pagedata.nativeflag;
                         postjson.localhouseflag=pagedata.localhouseflag;  
                         postjson.monthEndowmentInsurance=pagedata.monthEndowmentInsurance;  
                         
                     }else{
-                        postjson.nativeflag='';
                         postjson.localhouseflag='';
                         postjson.monthEndowmentInsurance='';
                     }
@@ -348,7 +330,6 @@ var commomState =[
                 }else{
                     postjson.solutionlist='';
                     postjson.islocallicenseplate='';
-                    postjson.nativeflag='';
                     postjson.localhouseflag='';
                     postjson.monthhousingfund=0;
                     postjson.monthEndowmentInsurance=0;
@@ -444,11 +425,6 @@ var commomState =[
             }else{
                 vm.radioChoice.car=false;
             }
-            if('1'===vm.postdata.nativeflag){
-                vm.radioChoice.natives=true;
-            }else{
-                vm.radioChoice.natives=false;
-            }
             if('1'===vm.postdata.localhouseflag){
                 vm.radioChoice.house=true;
             }else{
@@ -526,19 +502,12 @@ var commomState =[
               handler:function(curVal,oldVal){
                 var vm = this;
                 var car = curVal.car;
-                var natives = curVal.natives;
                 var house = curVal.house;
                 
                 if(car){
                     vm.postdata.islocallicenseplate = "1";
                 }else{
                     vm.postdata.islocallicenseplate = "0";
-                }
-
-                if(natives){
-                    vm.postdata.nativeflag = "1";
-                }else{
-                    vm.postdata.nativeflag = "0";
                 }
                 if(house){
                     vm.postdata.localhouseflag = '1';

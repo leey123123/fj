@@ -22,6 +22,10 @@
             </div>
         </li>
         <li>
+            <label>手机号码</label>
+            <input type="date" name="" value="" class="box_flex"  :value="postdata.mobiletelephone" disabled>
+        </li>
+        <li>
             <label>出生日期</label>
             <input type="date" name="" value="" class="box_flex"  :value="postdata.birthday" disabled>
         </li>
@@ -76,11 +80,6 @@
             </div>
             <p class="apply-icon">年</p>
         </li>
-        <li @click="choiceLoansUsedNature()">
-            <label>贷款用途性质</label>
-            <input type="text" placeholder="请选择" name="" :value="getdicname('loansUsedNature',postdata.loansUsedNature)" class="box_flex"  readonly="true">
-            <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
-        </li>
         <li>
             <label>月收入</label>
             <input type="text" name="" value="" class="box_flex nums-input" v-model="postdata.monthincome" placeholder="请输入月收入" :readonly="dataAbled">               
@@ -103,6 +102,7 @@ export default{
         return{
             postdata:{
                     customername:'',
+                    mobiletelephone:'',
                     certtype :'Ind01',
                     certid :'',
                     sex :'',
@@ -115,24 +115,18 @@ export default{
                     posionlevel:'',
                     industryage:0,
                     workbegindate :0,
-                    loansUsedNature:'',
                     monthincome :''
                 },
             dict:{
                 employeetype:'',
                 marriage:'',
-                posionlevel:'',
-                loansUsedNature:''
+                posionlevel:''
             },
             marriageselect:{
                 picker:'',
                 adata:''
             },
             posionlevelselect:{
-                picker:'',
-                adata:''
-            },
-            loansUsedNatureselect:{
                 picker:'',
                 adata:''
             },
@@ -214,30 +208,20 @@ export default{
                 }
             this.posionlevelselect.picker.show();
         },
-        choiceLoansUsedNature:function(){
-            var vm = this;
-            if(vm.dataAbled){
-                    return;
-                }
-            this.loansUsedNatureselect.picker.show();
-        },
         initSelect:function(){
             var vm = this;
             var dict = JSON.parse(sessionStorage.getItem('qddict'));
             var employeeType = dict.employeetype;
             var marriage = dict.marriage;
             var posionlevel = dict.posionlevel;
-            var loansUsedNature = dict.loansUsedNature;
 
             vm.dict = {
                 employeetype:employeeType,
                 marriage:marriage,
-                posionlevel:posionlevel,
-                loansUsedNature:loansUsedNature
+                posionlevel:posionlevel
             };
             vm.marriageselect.adata = marriage;
             vm.posionlevelselect.adata = posionlevel;
-            vm.loansUsedNatureselect.adata = loansUsedNature;
             if(vm.dataAbled){
                     return;
                 }
@@ -271,20 +255,6 @@ export default{
               });
             }
 
-            if(this.loansUsedNatureselect.picker===""||this.loansUsedNatureselect.picker===undefined){
-                this.loansUsedNatureselect.picker = new this.Picker({
-                    'data': [vm.loansUsedNatureselect.adata]
-                  });
-
-              this.loansUsedNatureselect.picker.on('picker.select', function (selectedVal, selectedIndex) {
-                vm.postdata.loansUsedNature = vm.loansUsedNatureselect.adata[selectedIndex].value;
-                
-              });
-
-              this.loansUsedNatureselect.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
-                vm.postdata.loansUsedNature = vm.loansUsedNatureselect.adata[selectedIndex].value;
-              });
-            }
         },
         save:function(){
             var vm = this;

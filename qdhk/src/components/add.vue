@@ -85,6 +85,16 @@
                     <input type="tel" name="" value="" placeholder="请输入手机号码" class="box_flex nums-input" v-model="applyMes.mobiletelephone" maxlength="11">
                     <!-- <p class="text-succ" @click="sendMes()">&nbsp;{{yzm.content}}</p> -->
                 </li>
+                <li @click="nativeflagShow()">
+                    <label>户籍类型</label>
+                    <input type="text" name="" :value="getdicname('nativeflag',applyMes.nativeflag)" class="box_flex" placeholder="请选择贷款用途" readonly="true">
+                    <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
+                </li>
+                <li @click="choiceLoansUsedNature()">
+                    <label>贷款用途性质</label>
+                    <input type="text" placeholder="请选择" name="" :value="getdicname('loansUsedNature',applyMes.loansUsedNature)" class="box_flex"  readonly="true">
+                    <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
+                </li>
                 <!-- <li>
                     <label>验证码</label>
                     <input type="text" name="" value="083324" class="box_flex" v-model="yzm.code" maxlength="6">
@@ -129,6 +139,14 @@ export default{
 
     data:function(){
         return{
+          nativeflag:{
+                picker:'',
+                adata:''
+          },
+          loansUsedNature:{
+                picker:'',
+                adata:''
+            },
           role:{
             role:'',
             user_id:''
@@ -154,8 +172,9 @@ export default{
               mobiletelephone:'',
               certstartdate:'',
               certmaturitydate:'',
-              certplace:''
-
+              certplace:'',
+              nativeflag:'',
+              loansUsedNature:''
             },
             alertshow:false,
             alertcontent:'',
@@ -163,6 +182,14 @@ export default{
         }
     },
     methods:{
+        nativeflagShow:function(){
+          var vm = this;
+            vm.nativeflag.picker.show();
+        },
+        choiceLoansUsedNature:function(){
+          var vm = this;
+            vm.loansUsedNature.picker.show();
+        },
         choiceEmployType:function(){
           this.employeeType.picker.show();
         },
@@ -239,6 +266,70 @@ export default{
             }
             setTimeout(vm.countdown,1000);
         },
+        getdicname:function(dickey,valuekey){
+          var vm = this;
+          var dict = vm[dickey].adata;
+          for(var i=0;i<dict.length;i++){
+              if(dict[i].value===valuekey){
+                  return dict[i].text;
+              }
+          }
+          return '';
+        },
+        initselect:function(){
+          var vm = this;
+          var dict = JSON.parse(sessionStorage.getItem('qddict'));
+          vm.employeeType.adata = dict.employeetype;
+          vm.nativeflag.adata = dict.nativeflag;
+          vm.loansUsedNature.adata = dict.loansUsedNature;
+          if(this.nativeflag.picker===""||this.nativeflag.picker===undefined){
+              this.nativeflag.picker = new this.Picker({
+                  'data': [vm.nativeflag.adata]
+                });
+
+            this.nativeflag.picker.on('picker.select', function (selectedVal, selectedIndex) {
+              vm.applyMes.nativeflag = vm.nativeflag.adata[selectedIndex].value;
+              
+            });
+
+            this.nativeflag.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
+              vm.applyMes.nativeflag = vm.nativeflag.adata[selectedIndex].value;
+            });
+          }
+
+          if(this.loansUsedNature.picker===""||this.loansUsedNature.picker===undefined){
+              this.loansUsedNature.picker = new this.Picker({
+                  'data': [vm.loansUsedNature.adata]
+                });
+
+            this.loansUsedNature.picker.on('picker.select', function (selectedVal, selectedIndex) {
+              vm.applyMes.loansUsedNature = vm.loansUsedNature.adata[selectedIndex].value;
+              
+            });
+
+            this.loansUsedNature.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
+              vm.applyMes.loansUsedNature = vm.loansUsedNature.adata[selectedIndex].value;
+            });
+          }
+          if(this.employeeType.picker===""||this.employeeType.picker===undefined){
+            this.employeeType.picker = new this.Picker({
+                'data': [vm.employeeType.adata]
+              });
+
+          this.employeeType.picker.on('picker.select', function (selectedVal, selectedIndex) {
+            vm.applyMes.employtype = vm.employeeType.adata[selectedIndex].text;
+            vm.applyMes.employtypecode = vm.employeeType.adata[selectedIndex].value;
+            
+          });
+
+          this.employeeType.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
+            vm.applyMes.employtype = vm.employeeType.adata[selectedIndex].text;
+            vm.applyMes.employtypecode = vm.employeeType.adata[selectedIndex].value;
+          });
+        }
+
+
+        },
         initpage:function(){
           var vm = this; 
           vm.$parent.type=1; 
@@ -256,12 +347,11 @@ export default{
           var userMesArray = userMes.split('|');
           vm.role.role = userMesArray[1]; 
           vm.role.user_id = userMesArray[0];
-          var dict = JSON.parse(sessionStorage.getItem('qddict'));
-          vm.employeeType.adata = dict.employeetype;
 
           for(var x in vm.applyMes){
             vm.applyMes[x] = this.getData(x);
           }
+          this.initselect();
               
         },
         submit:function(){
@@ -410,6 +500,22 @@ export default{
                   });
             return false;
           }
+          if(!this.applyMes.nativeflag){
+            Toast({
+                    message: "请先选择户籍类型",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+            return false;
+          }
+          if(!this.applyMes.loansUsedNature){
+            Toast({
+                    message: "请先选择贷款用途性质",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+            return false;
+          }
           return true;
          
         },
@@ -437,23 +543,6 @@ export default{
     created:function(){
       var vm = this;
       vm.initpage();
-
-        if(this.employeeType.picker===""||this.employeeType.picker===undefined){
-            this.employeeType.picker = new this.Picker({
-                'data': [vm.employeeType.adata]
-              });
-
-          this.employeeType.picker.on('picker.select', function (selectedVal, selectedIndex) {
-            vm.applyMes.employtype = vm.employeeType.adata[selectedIndex].text;
-            vm.applyMes.employtypecode = vm.employeeType.adata[selectedIndex].value;
-            
-          });
-
-          this.employeeType.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
-            vm.applyMes.employtype = vm.employeeType.adata[selectedIndex].text;
-            vm.applyMes.employtypecode = vm.employeeType.adata[selectedIndex].value;
-          });
-        }
     },
 
     watch:{
