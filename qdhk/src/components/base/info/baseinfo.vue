@@ -23,7 +23,7 @@
         </li>
         <li>
             <label>手机号码</label>
-            <input type="date" name="" value="" class="box_flex"  :value="postdata.mobiletelephone" disabled>
+            <input type="text" name="" value="" class="box_flex"  :value="postdata.mobiletelephone" disabled>
         </li>
         <li>
             <label>出生日期</label>

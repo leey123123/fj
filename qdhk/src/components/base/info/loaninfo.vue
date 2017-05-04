@@ -6,6 +6,11 @@
             <input type="text" name="" value="" placeholder="请输入申请金额" class="box_flex" v-model="postdata.businesssum"  :readonly="dataAbled">
             <p class="apply-icon">元</p>
         </li>
+        <li @click="choiceLoansUsedNature()">
+            <label>贷款用途性质</label>
+            <input type="text" placeholder="请选择" name="" :value="getdicname('loansUsedNature',postdata.loansUsedNature)" class="box_flex"  readonly="true">
+            <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
+        </li>
         <li @click="loanusedshow()">
             <label>贷款用途</label>
             <input type="text" name="" :value="getdicname('loanused',postdata.loanused)" class="box_flex" placeholder="请选择贷款用途">
@@ -76,9 +81,14 @@ export default{
                 gatheringcardid  :'',//收款卡号
                 paymentcardbank  :'',//还款行名称
                 paymentcardid  :'',//还款卡号
-                gatheroutgname :''//还款账户户名
+                gatheroutgname :'',//还款账户户名
+                loansUsedNature:''
             },
             loanused:{
+                picker:'',
+                adata:''
+            },
+            loansUsedNature:{
                 picker:'',
                 adata:''
             },
@@ -97,6 +107,13 @@ export default{
                 }
             this.loanused.picker.show();
         },
+        choiceLoansUsedNature:function(){
+          var vm = this;
+          if(vm.dataAbled){
+                    return;
+                }
+            vm.loansUsedNature.picker.show();
+        },
         getdicname:function(dickey,valuekey){
             var vm = this;
             var dict = vm[dickey].adata;
@@ -111,6 +128,7 @@ export default{
             var vm = this;
             var dict = JSON.parse(sessionStorage.getItem('qddict'));
             vm.loanused.adata = dict.loanused;
+            vm.loansUsedNature.adata = dict.loansUsedNature;
             if(vm.dataAbled){
                     return;
                 }
@@ -128,6 +146,21 @@ export default{
                 vm.postdata.loanused = vm.loanused.adata[selectedIndex].value;
               });
             }
+
+         if(this.loansUsedNature.picker===""||this.loansUsedNature.picker===undefined){
+              this.loansUsedNature.picker = new this.Picker({
+                  'data': [vm.loansUsedNature.adata]
+                });
+
+            this.loansUsedNature.picker.on('picker.select', function (selectedVal, selectedIndex) {
+              vm.postdata.loansUsedNature = vm.loansUsedNature.adata[selectedIndex].value;
+              
+            });
+
+            this.loansUsedNature.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
+              vm.postdata.loansUsedNature = vm.loansUsedNature.adata[selectedIndex].value;
+            });
+          }
         },
         doloanterm:function(bool){
             var vm = this;
