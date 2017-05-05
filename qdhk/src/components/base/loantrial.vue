@@ -13,7 +13,7 @@
                     <li v-for="(itemc,index) in item.solutions" :class="{'active':chhoiceSoId===itemc.solutionid}" :solutionid="itemc.solutionid" @click="choiceType(item.productid,itemc.solutionid)">
                         <i class="chicon-circle"></i>
                         <p class="box_flex">{{itemc.solutionname}}</p>
-                        <p>{{itemc.creditamount}}万</p>
+                        <p>{{itemc.creditamount}}元</p>
                     </li>
                 </ul>
             </li>
