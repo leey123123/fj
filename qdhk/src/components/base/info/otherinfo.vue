@@ -1,5 +1,5 @@
 <template>
-<div class="tap-info">
+<div class="tap-info" style="padding-top: .7rem;">
     <ul class="apply-input-info changing-info">
         <li @click="eduexperienceshow()">
             <label>教育程度</label>

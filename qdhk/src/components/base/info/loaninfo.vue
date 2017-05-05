@@ -1,5 +1,5 @@
 <template>
-<div class="tap-info">
+<div class="tap-info" style="padding-top: .7rem;">
     <ul class="apply-input-info changing-info">
         <li>
             <label>申请金额</label>
@@ -13,7 +13,7 @@
         </li>
         <li @click="loanusedshow()">
             <label>贷款用途</label>
-            <input type="text" name="" :value="getdicname('loanused',postdata.loanused)" class="box_flex" placeholder="请选择贷款用途">
+            <input type="text" name="" :value="getdicname('loanused',postdata.loanused)" class="box_flex" placeholder="请选择贷款用途" readonly="true">
             <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
         </li>
         <li class="work-time">
@@ -29,9 +29,11 @@
 
 
     <ul class="apply-input-info changing-info list-group-top">
-        <li>
+
+        <li @click="accountinbankshow()">
             <label>收款行</label>
-            <input type="text" name="" value="" class="box_flex" placeholder="请输入收款行" v-model="postdata.accountinbank" :readonly="dataAbled">
+            <input type="text" name="" :value="getdicname('accountinbank',postdata.accountinbank)" class="box_flex" placeholder="请选择收款行" readonly="true">
+            <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
         </li>
         <li>
             <label>收款账户户名</label>
@@ -44,9 +46,10 @@
     </ul>
 
     <ul class="apply-input-info changing-info list-group-top">
-        <li>
+        <li @click="paymentcardbankshow()">
             <label>还款行</label>
-            <input type="text" name="" value="" class="box_flex" placeholder="请输入还款行"v-model="postdata.paymentcardbank" :readonly="dataAbled">
+            <input type="text" name="" :value="getdicname('paymentcardbank',postdata.paymentcardbank)" class="box_flex" placeholder="请选择还款行" readonly="true">
+            <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
         </li>
         <li>
             <label>还款账户户名</label>
@@ -76,13 +79,21 @@ export default{
                 businesssum :'',//申请金额
                 loanused  :'',//贷款用途
                 loanterm :'',//意向贷款期限
-                accountinbank :'',//收款行名称
+                accountinbank :'',//收款行编号
                 gatheringname  :'',//收款账户户名
                 gatheringcardid  :'',//收款卡号
-                paymentcardbank  :'',//还款行名称
+                paymentcardbank  :'',//还款行编号
                 paymentcardid  :'',//还款卡号
                 gatheroutgname :'',//还款账户户名
                 loansUsedNature:''
+            },
+            accountinbank:{
+                picker:'',
+                adata:''
+            },
+            paymentcardbank:{
+                picker:'',
+                adata:''
             },
             loanused:{
                 picker:'',
@@ -100,6 +111,20 @@ export default{
         }
     },
     methods:{
+        accountinbankshow:function(){
+            var vm = this;
+            if(vm.dataAbled){
+                    return;
+                }
+            this.accountinbank.picker.show();
+        },
+        paymentcardbankshow:function(){
+            var vm = this;
+            if(vm.dataAbled){
+                    return;
+                }
+            this.paymentcardbank.picker.show();
+        },
         loanusedshow:function(){
             var vm = this;
             if(vm.dataAbled){
@@ -129,6 +154,8 @@ export default{
             var dict = JSON.parse(sessionStorage.getItem('qddict'));
             vm.loanused.adata = dict.loanused;
             vm.loansUsedNature.adata = dict.loansUsedNature;
+            vm.accountinbank.adata = dict.accountinbank;
+            vm.paymentcardbank.adata = dict.paymentcardbank;
             if(vm.dataAbled){
                     return;
                 }
@@ -159,6 +186,36 @@ export default{
 
             this.loansUsedNature.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
               vm.postdata.loansUsedNature = vm.loansUsedNature.adata[selectedIndex].value;
+            });
+          }
+
+          if(this.accountinbank.picker===""||this.accountinbank.picker===undefined){
+              this.accountinbank.picker = new this.Picker({
+                  'data': [vm.accountinbank.adata]
+                });
+
+            this.accountinbank.picker.on('picker.select', function (selectedVal, selectedIndex) {
+              vm.postdata.accountinbank = vm.accountinbank.adata[selectedIndex].value;
+              
+            });
+
+            this.accountinbank.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
+              vm.postdata.accountinbank = vm.accountinbank.adata[selectedIndex].value;
+            });
+          }
+
+          if(this.paymentcardbank.picker===""||this.paymentcardbank.picker===undefined){
+              this.paymentcardbank.picker = new this.Picker({
+                  'data': [vm.paymentcardbank.adata]
+                });
+
+            this.paymentcardbank.picker.on('picker.select', function (selectedVal, selectedIndex) {
+              vm.postdata.paymentcardbank = vm.paymentcardbank.adata[selectedIndex].value;
+              
+            });
+
+            this.paymentcardbank.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
+              vm.postdata.paymentcardbank = vm.paymentcardbank.adata[selectedIndex].value;
             });
           }
         },

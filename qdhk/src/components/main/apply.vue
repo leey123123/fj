@@ -172,9 +172,7 @@ export default{
                       duration: 1500
                     });
                 if(errorcode==="-998"||errorcode===-998){
-                          setTimeout(function(){
-                              this.$router.replace({name:'login'});
-                            }, 2000);
+                          setTimeout(vm.tologin, 1500);
                         }
                     
                     return;

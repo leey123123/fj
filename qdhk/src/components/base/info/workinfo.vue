@@ -1,5 +1,5 @@
 <template>
-<div class="tap-info">
+<div class="tap-info" style="padding-top: .7rem;">
     <ul class="apply-input-info changing-info">
         <li>
             <label>工作单位名称</label>

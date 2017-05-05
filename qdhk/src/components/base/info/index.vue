@@ -1,6 +1,6 @@
 <template>
     <div>
-    <ul class="info-list box_box">
+    <ul class="info-list box_box" style="position: fixed;width: 100%; z-index:20">
         <li @click="choiceChildMenu(1)" :class="{'active':childmenutype===1}">基本信息</li>
         <li @click="choiceChildMenu(2)" :class="{'active':childmenutype===2}">贷款信息</li>
         <li @click="choiceChildMenu(3)" :class="{'active':childmenutype===3}">工作信息</li>

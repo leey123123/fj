@@ -58,7 +58,7 @@
                         </li>
 
                         <li>
-                            <label>社保月缴费/label>
+                            <label>社保月缴费</label>
                              <input type="text" name="" value="" class="box_flex nums-input thisinput" style="background: rgba(241, 237, 237, 0.0901961);" v-model="postdata.monthEndowmentInsurance"> 
                              <p class="apply-icon">元</p>
                         </li>

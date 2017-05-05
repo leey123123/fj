@@ -1,5 +1,5 @@
 <template>
-<div class="tap-info" style="display: block;">
+<div class="tap-info" style="padding-top: .7rem;">
     <ul class="apply-input-info changing-info">
         <li>
             <label>配偶联系人姓名</label>
