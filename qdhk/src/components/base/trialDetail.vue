@@ -312,7 +312,7 @@ var commomState =[
                     if(pagedata.solutionlist.indexOf('0170')>-1){//公积金
                         postjson.monthhousingfund=pagedata.monthhousingfund;
                     }else{
-                        postjson.monthhousingfund=0;
+                        postjson.monthhousingfund='0';
                     }
                     if(pagedata.solutionlist.indexOf('0180')>-1){//社保
                         postjson.localhouseflag=pagedata.localhouseflag;  
