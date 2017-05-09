@@ -54,7 +54,7 @@
   </li> -->
         <li @click="nativeflagShow()">
             <label>户籍类型</label>
-            <input type="text" name="" :value="getdicname('nativeflag',postdata.nativeflag)" class="box_flex" placeholder="请选择贷款用途" readonly="true">
+            <input type="text" name="" :value="getdicname('nativeflag',postdata.nativeflag)" class="box_flex" placeholder="请选择户籍类型" readonly="true">
             <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
         </li>
         <li>
