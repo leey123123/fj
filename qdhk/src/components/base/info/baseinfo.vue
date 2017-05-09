@@ -57,7 +57,7 @@
             <input type="text" name="" :value="getdicname('nativeflag',postdata.nativeflag)" class="box_flex" placeholder="请选择户籍类型" readonly="true">
             <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
         </li>
-        <li>
+        <li @click="employeetypeShow">
             <label>雇佣类型</label>
             <input type="text" name="" :value="getdicname('employeetype',postdata.employeetype)" class="box_flex"  disabled>
             <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
@@ -226,6 +226,14 @@ export default{
                 }
             this.nativeflag.picker.show();
         },
+        nativeflagShow:function(){
+            var vm = this;
+            if(vm.dataAbled){
+                    return;
+                }
+            this.employeetypeShow.picker.show();
+        },
+        
         initSelect:function(){
             var vm = this;
             var dict = JSON.parse(sessionStorage.getItem('qddict'));
