@@ -42,6 +42,7 @@
             <label>发证机关所在地</label>
             <textarea name="" class="box_flex" v-model="postdata.certplace" placeholder="请输入发证机关所在地" disabled></textarea>  
         </li>
+
         <li @click="choiceMarriage()">
             <label>婚姻状况</label>
             <input type="text" name=""  placeholder="请选择" class="box_flex" :value="getdicname('marriage',postdata.marriage)" readonly="true">
@@ -51,6 +52,11 @@
       <label>户口所在地</label>
       <textarea name="" class="box_flex" v-model="postdata.certplace"></textarea>  
   </li> -->
+        <li @click="nativeflagShow()">
+            <label>户籍类型</label>
+            <input type="text" name="" :value="getdicname('nativeflag',postdata.nativeflag)" class="box_flex" placeholder="请选择贷款用途" readonly="true">
+            <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
+        </li>
         <li>
             <label>雇佣类型</label>
             <input type="text" name="" :value="getdicname('employeetype',postdata.employeetype)" class="box_flex"  disabled>
@@ -115,12 +121,17 @@ export default{
                     posionlevel:'',
                     industryage:0,
                     workbegindate :0,
-                    monthincome :''
+                    monthincome :'',
+                    nativeflag:''
                 },
             dict:{
                 employeetype:'',
                 marriage:'',
                 posionlevel:''
+            },
+            nativeflag:{
+                picker:'',
+                adata:''
             },
             marriageselect:{
                 picker:'',
@@ -208,23 +219,50 @@ export default{
                 }
             this.posionlevelselect.picker.show();
         },
+        nativeflagShow:function(){
+            var vm = this;
+            if(vm.dataAbled){
+                    return;
+                }
+            this.nativeflag.picker.show();
+        },
         initSelect:function(){
             var vm = this;
             var dict = JSON.parse(sessionStorage.getItem('qddict'));
             var employeeType = dict.employeetype;
             var marriage = dict.marriage;
             var posionlevel = dict.posionlevel;
+            var nativeflag = dict.nativeflag;
 
             vm.dict = {
                 employeetype:employeeType,
                 marriage:marriage,
-                posionlevel:posionlevel
+                posionlevel:posionlevel,
+                nativeflag:nativeflag
             };
             vm.marriageselect.adata = marriage;
             vm.posionlevelselect.adata = posionlevel;
+            vm.nativeflag.adata = nativeflag
             if(vm.dataAbled){
                     return;
                 }
+
+          if(this.nativeflag.picker===""||this.nativeflag.picker===undefined){
+              this.nativeflag.picker = new this.Picker({
+                  'data': [vm.nativeflag.adata]
+                });
+
+            this.nativeflag.picker.on('picker.select', function (selectedVal, selectedIndex) {
+              vm.postdata.nativeflag = vm.nativeflag.adata[selectedIndex].value;
+              
+            });
+
+            this.nativeflag.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
+              vm.postdata.nativeflag = vm.nativeflag.adata[selectedIndex].value;
+            });
+          }
+
+
             if(this.marriageselect.picker===""||this.marriageselect.picker===undefined){
                 this.marriageselect.picker = new this.Picker({
                     'data': [vm.marriageselect.adata]
