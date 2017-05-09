@@ -127,13 +127,18 @@ export default{
             dict:{
                 employeetype:'',
                 marriage:'',
-                posionlevel:''
+                posionlevel:'',
+                nativeflag:''
             },
             nativeflag:{
                 picker:'',
                 adata:''
             },
             marriageselect:{
+                picker:'',
+                adata:''
+            },
+            employeetype:{
                 picker:'',
                 adata:''
             },
@@ -226,12 +231,12 @@ export default{
                 }
             this.nativeflag.picker.show();
         },
-        nativeflagShow:function(){
+        employeetypeShow:function(){
             var vm = this;
             if(vm.dataAbled){
                     return;
                 }
-            this.employeetypeShow.picker.show();
+            this.employeetype.picker.show();
         },
         
         initSelect:function(){
@@ -250,7 +255,8 @@ export default{
             };
             vm.marriageselect.adata = marriage;
             vm.posionlevelselect.adata = posionlevel;
-            vm.nativeflag.adata = nativeflag
+            vm.nativeflag.adata = nativeflag;
+            vm.employeetype.adata = employeeType;
             if(vm.dataAbled){
                     return;
                 }
@@ -285,6 +291,7 @@ export default{
                 vm.postdata.marriage = vm.marriageselect.adata[selectedIndex].value;
               });
             }
+            
 
             if(this.posionlevelselect.picker===""||this.posionlevelselect.picker===undefined){
                 this.posionlevelselect.picker = new this.Picker({
@@ -298,6 +305,21 @@ export default{
 
               this.posionlevelselect.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
                 vm.postdata.posionlevel = vm.posionlevelselect.adata[selectedIndex].value;
+              });
+            }
+
+            if(this.employeetype.picker===""||this.employeetype.picker===undefined){
+                this.employeetype.picker = new this.Picker({
+                    'data': [vm.employeetype.adata]
+                  });
+
+              this.employeetype.picker.on('picker.select', function (selectedVal, selectedIndex) {
+                vm.postdata.employeetype = vm.employeetype.adata[selectedIndex].value;
+                
+              });
+
+              this.employeetype.picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
+                vm.postdata.employeetype = vm.employeetype.adata[selectedIndex].value;
               });
             }
 
