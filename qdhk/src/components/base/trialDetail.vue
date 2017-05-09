@@ -386,9 +386,9 @@ var commomState =[
                         insurancetype:'',
                         insurancecompany:'',
                         insurancecompanyname:'',
-                        invyearsum:0,//投资
-                        trayearsum:0,//传统
-                        insyearsum:0,
+                        invyearsum:'0',//投资
+                        trayearsum:'0',//传统
+                        insyearsum:'0',
                         validdate:'',
                         revalidflag:'',
                         revalidflagname:'',
