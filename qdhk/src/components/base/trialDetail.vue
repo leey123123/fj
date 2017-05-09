@@ -183,8 +183,8 @@ var commomState =[
                     solutionlist:'',
                     islocallicenseplate:'0',//是否本地车牌
                     localhouseflag:'0',//是否有本地房产
-                    monthhousingfund:0,//公积金月缴额度
-                    monthEndowmentInsurance:0,//社保月缴额度 
+                    monthhousingfund:'0',//公积金月缴额度
+                    monthEndowmentInsurance:'0',//社保月缴额度 
                     insurance:[]
                 },
                 insurancetypeselect:{//寿险公司下拉
@@ -331,8 +331,8 @@ var commomState =[
                     postjson.solutionlist='';
                     postjson.islocallicenseplate='';
                     postjson.localhouseflag='';
-                    postjson.monthhousingfund=0;
-                    postjson.monthEndowmentInsurance=0;
+                    postjson.monthhousingfund='0';
+                    postjson.monthEndowmentInsurance='0';
                     postjson.insurance=[];
                 }
                 var url = this.$baseRoot+"ChannelAccessAction?function=SaveCustomerApplyDetailInfo";
