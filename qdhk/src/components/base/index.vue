@@ -3,7 +3,7 @@
     <header>
     <div class="head"><h1>&nbsp;</h1></div>
     <a href="javascript:void(0);" onClick="javascript:history.go(-1)" title="返回" id="headerLeft"><i class="header_icon_return"></i></a>
-    <a href="javascript:void(0);" id="headerRight"><span @click="refuse" v-if="!dataAbled&&!roleFlag">拒绝</span>&nbsp;&nbsp;<span @click="cancelLoan()" v-if="!dataAbled">撤销</span>&nbsp;&nbsp;<span @click="submitloan" v-if="!dataAbled">提交</span></a>
+    <!-- <a href="javascript:void(0);" id="headerRight"><span @click="refuse" v-if="!dataAbled&&!roleFlag">拒绝</span>&nbsp;&nbsp;<span @click="cancelLoan()" v-if="!dataAbled">撤销</span>&nbsp;&nbsp; --><span @click="submitloan" v-if="!dataAbled">提交</span></a>
     </header>
     <div style="height: .84rem; width: 100%;"></div>
 
@@ -54,7 +54,7 @@ export default{
           this.$router.replace({name:'login'});
         },
 
-        refuse:function(){
+        /*refuse:function(){
 
             var vm = this;
             if(vm.dataAbled){
@@ -155,7 +155,7 @@ export default{
             }).catch(function(data){                
 
             });
-        },
+        },*/
         submitloan:function(){
             var vm = this;
             if(vm.dataAbled){

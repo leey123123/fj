@@ -530,6 +530,7 @@ export default{
                     position: 'bottom',
                     duration: 1500
                   });
+            return;
           }
           if(!this.IdCardValidate(this.applyMes.certid)){
             Toast({
