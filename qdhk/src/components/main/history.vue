@@ -64,7 +64,7 @@ export default{
           certid:'',
           startdate:'',
           enddate:'',
-          status:'0002|0004|0005'
+          status:'0002|0004|0005|0006'
         }
       },
       datalist:[],
@@ -86,6 +86,10 @@ export default{
         {
           value:'0005',
           text:'通过'
+        },
+        {
+          value:'0006',
+          text:'不合格'
         }
       ]
     };
