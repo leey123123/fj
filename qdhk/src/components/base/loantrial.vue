@@ -28,6 +28,22 @@
         <div style="height: .84rem; width: 100%;"></div>
     </article>
 
+     <!-- 提示 -->
+  <transition name="apply-delete">
+    <section class="popup-boxes iAlert" v-show="alert.show">
+       <div class="popup-title">
+          <h3>提示</h3>
+       </div>
+       <div class="popup-con box_vam">
+            <p>{{alert.content}}</p>
+            
+       </div>
+       <div class="popup-btn box_box">
+          <a href="javascript:void(0);" class="active" @click="sure()">确定</a>
+      </div>
+    </section>
+  </transition>
+
   </div>
 </template>
 <script>
@@ -37,7 +53,12 @@ export default{
             solution:[],
             chhoiceSoId:'',
             productid:'',
-            dataAbled:true//是否可以编写false可编写true不可编写
+            dataAbled:true,//是否可以编写false可编写true不可编写
+            alert:{
+                show:false,
+                content:''
+
+            }
         
         }
     },
@@ -67,6 +88,13 @@ export default{
         },
         moretype:function(){
             this.$router.replace({name:'trialDetail'});
+        },
+        sure:function(){
+            var vm = this;
+            vm.alert.show=false;
+            vm.alert.content="";
+            this.$router.replace({name:'apply'});
+
         }
     },
     beforeCreate:function(){
@@ -89,8 +117,13 @@ export default{
             var errorcode = data['error_no'];
             var errorinfo = data['error_info'];
             var results = data.results;
+            
             if(errorcode!==0 && errorcode!=='0'){
-                this.alertshow=true;
+                if((errorcode!==1 && errorcode!=='1')||(errorcode!==2 && errorcode!=='2')||(errorcode!==4 && errorcode!=='4')){
+                    vm.alert.content="客户在黑名单中";
+                    vm.alert.show=true;
+                    return;
+                }
                 Toast({
                         message: errorinfo,
                         position: 'bottom',

@@ -394,15 +394,6 @@ export default{
     line-height: .7rem;
     text-align: center;
 }
-.iAlert{
-    position: fixed;
-    vertical-align: middle;
-    top:1.2rem;
-    z-index: 101;
-    align-items: center;
-    top: 20%;
-    left: 12%;
-}
 
 .applyse{
      -webkit-transform: translate3d(0, 0, 0);
@@ -435,35 +426,6 @@ export default{
   100% {
     transform: translate3d(0, -100%, 0);
     -webkit-transform: translate3d(0, -100%, 0);
-  }
-}
-
-.apply-delete-enter-active {
-  animation-name: opacity-in;
-  animation-duration: .3s;
-}
-.apply-delete-leave-active {
-  animation-name: opacity-out;
-  animation-duration: .1s;
-}
-@keyframes opacity-in {
-  0% {
-    opacity:0;
-    -webkit-opacity: 0;
-  }
-  100% {
-    opacity:1;
-    -webkit-opacity: 1;
-  }
-}
-@keyframes opacity-out {
-  0% {
-    opacity:1;
-    -webkit-opacity: 1;
-  }
-  100% {
-    opacity:0;
-    -webkit-opacity: 0;
   }
 }
 
