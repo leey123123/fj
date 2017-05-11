@@ -100,7 +100,7 @@
                     <input type="text" name="" value="083324" class="box_flex" v-model="yzm.code" maxlength="6">
                 </li> -->
             </ul>
-            <div class="apply-btn"><a href="javascript:void(0);" class="btn-login btn-submit" @click="submit()">提交</a></div>
+            <div class="apply-btn"><a href="javascript:void(0);" class="btn-login btn-submit" @click="submit()">保存</a></div>
         </article>
 
         <!-- <transition name="popup-ad-bottom" v-on:after-leave="afterLeave" v-on:before-enter="beforeEnter">
