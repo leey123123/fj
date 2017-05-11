@@ -10,7 +10,7 @@
   <article>
       <ul class="list-apply list-history">
           <li v-for="(item,index) in datalist" @click="selectone(item.applyid)">
-              <div class="box_vam"><span class="chicon-xin" v-if="item.iscredit==='1'">信</span> {{cutTime(item.inputdate)}}</div>
+              <div class="box_vam">{{cutTime(item.inputdate)}}<span class="chicon-xin" v-if="item.iscredit==='1'">信</span> </div>
               <p class="history-name">{{item.customername}}</p>
               <p class="box_flex text-center">{{cutcertid(item.certid)}}</p>
               <p class="text-light text-right">{{getStatusName(item.applystatus)}}</p>
