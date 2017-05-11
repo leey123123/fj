@@ -106,9 +106,9 @@ export default{
       vm.pagenum = 0;
       vm.datalist=[];
       if(vm.role.role === window.contants.role.qd){
-        vm.search.status='0002|0003|0004|0005|0006';
+        vm.search.param.status='0002|0003|0004|0005|0006';
       }else{
-        vm.search.status='0002|0004|0005|0006';
+        vm.search.param.status='0002|0004|0005|0006';
       }
       this.queryList();
 
@@ -304,9 +304,9 @@ export default{
     vm.role.role = userMesArray[1]; 
     vm.role.user_id = userMesArray[0];
     if(userMesArray[1]===window.contants.role.qd){
-      vm.search.status='0002|0003|0004|0005|0006';
+      vm.search.param.status='0002|0003|0004|0005|0006';
     }else{
-      vm.search.status='0002|0004|0005|0006';
+      vm.search.param.status='0002|0004|0005|0006';
     }
     vm.queryList();
   },
