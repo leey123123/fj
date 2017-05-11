@@ -119,7 +119,7 @@ export default{
             var results = data.results;
             
             if(errorcode!==0 && errorcode!=='0'){
-                if((errorcode!==1 && errorcode!=='1')||(errorcode!==2 && errorcode!=='2')||(errorcode!==4 && errorcode!=='4')){
+                if(errorcode === 1 || errorcode ==='1' ||errorcode === 2 || errorcode ==='2' ||errorcode === 4 || errorcode ==='4'){
                     vm.alert.content="客户为非准入客户";
                     vm.alert.show=true;
                     return;
