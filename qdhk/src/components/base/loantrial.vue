@@ -30,7 +30,8 @@
 
      <!-- 提示 -->
   <transition name="apply-delete">
-    <section class="popup-boxes iAlert" v-show="alert.show">
+    <div>
+    <section class="popup-boxes iAlert" v-show="alert.show" style="z-index:2002">
        <div class="popup-title">
           <h3>提示</h3>
        </div>
@@ -41,7 +42,10 @@
        <div class="popup-btn box_box">
           <a href="javascript:void(0);" class="active" @click="sure()">确定</a>
       </div>
+      
     </section>
+    <div class="shadeAll" style="z-index:2001" v-show="alert.show" ></div>
+    </div>
   </transition>
 
   </div>
