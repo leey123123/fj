@@ -85,7 +85,11 @@ export default{
                 alertcontent:'保存成功',
                 alertPop:false
             },
-            dataAbled:true//是否可以编写false可编写true不可编写
+            dataAbled:true,//是否可以编写false可编写true不可编写
+            role:{
+                 role:'',
+                user_id:''
+              } 
         }
     },
     methods:{
@@ -275,6 +279,11 @@ export default{
             if(vm.dataAbled){
                     return;
                 }
+            if(window.contants.role.jl===vm.role.role){
+                if(!vm.checkCondition()){
+                    return;
+                }
+            }
 
             vm.addInfo(function(){
                 vm.$router.replace({name:'login'});
@@ -286,6 +295,57 @@ export default{
             });
             
         },
+        checkCondition:function(){
+            var vm = this;
+            var postdata = vm.postdata;
+
+            if(!postdata.eduexperience){
+                Toast({
+                    message: "请选择教育程度",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+            if(!postdata.homestatus){
+                Toast({
+                    message: "请选择居住状况",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+            if(!postdata.familyaddcode){
+                Toast({
+                    message: "请选择居住地址",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+            if(!postdata.homeadd){
+                Toast({
+                    message: "请填写居住地址详细",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+            if(!postdata.childflag){
+                Toast({
+                    message: "请选择有无子女",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              return true;
+          },
         hideAlertPop:function(){
             this.pop.alertPop=false;
         }
@@ -294,6 +354,20 @@ export default{
         var vm = this;
         this.$parent.$parent.menutype=2;
         this.$parent.childmenutype=5;
+        var key = sessionStorage.getItem('key');
+          if(!key){
+            this.$router.replace({name:'login'});
+            return;
+          }
+          var userMes = sessionStorage.getItem('userMes');
+          if(!userMes){
+            this.$router.replace({name:'login'});
+            return;
+          }
+          userMes = this.$Decrypt(userMes,key);
+          var userMesArray = userMes.split('|');
+          vm.role.role = userMesArray[1]; 
+          vm.role.user_id = userMesArray[0];
         for(var x in vm.postdata){
                 vm.postdata[x] = this.getData(x);
             }

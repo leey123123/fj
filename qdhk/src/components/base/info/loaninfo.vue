@@ -23,7 +23,7 @@
                 <input type="text" name="" value="" class="box_flex years-input" v-model="postdata.loanterm" :readonly="dataAbled">
                 <i class="input-plus" @click="doloanterm(true)">+</i>
             </div>
-            <p class="apply-icon">月</p>
+            <p class="apply-icon">年</p>
         </li>
     </ul>
 
@@ -107,7 +107,11 @@ export default{
                 alertcontent:'保存成功',
                 alertPop:false
             },
-            dataAbled:true//是否可以编写false可编写true不可编写
+            dataAbled:true,//是否可以编写false可编写true不可编写
+            role:{
+                 role:'',
+                user_id:''
+              } 
         }
     },
     methods:{
@@ -246,6 +250,11 @@ export default{
             if(vm.dataAbled){
                     return;
                 }
+            if(window.contants.role.jl===vm.role.role){
+                if(!vm.checkCondition()){
+                    return;
+                }
+            }
             vm.addInfo(function(){
                 vm.$router.replace({name:'login'});
                 return;
@@ -256,6 +265,104 @@ export default{
             });
             
         },
+        checkCondition:function(){
+            var vm = this;
+            var postdata = vm.postdata;
+
+            if(!postdata.businesssum){
+                Toast({
+                    message: "请填写输入金额",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.loansUsedNature){
+                Toast({
+                    message: "请选择贷款用途性质",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.loanused){
+                Toast({
+                    message: "请选择贷款用途",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.loanterm){
+                Toast({
+                    message: "请填写意向贷款期限",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.accountinbank){
+                Toast({
+                    message: "请选择收款行",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.gatheringname){
+                Toast({
+                    message: "请填写收款账户户名",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.gatheringcardid){
+                Toast({
+                    message: "请填写收款卡号",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.paymentcardbank){
+                Toast({
+                    message: "请选择还款行",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+              
+              if(!postdata.gatheroutgname){
+                Toast({
+                    message: "请填写还款账户户名",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.paymentcardid){
+                Toast({
+                    message: "请填写还款卡号",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              
+
+              return true;
+          },
         hideAlertPop:function(){
             this.pop.alertPop=false;
         }
@@ -264,6 +371,20 @@ export default{
         var vm = this;
         this.$parent.$parent.menutype=2;
         this.$parent.childmenutype=2;
+        var key = sessionStorage.getItem('key');
+          if(!key){
+            this.$router.replace({name:'login'});
+            return;
+          }
+          var userMes = sessionStorage.getItem('userMes');
+          if(!userMes){
+            this.$router.replace({name:'login'});
+            return;
+          }
+          userMes = this.$Decrypt(userMes,key);
+          var userMesArray = userMes.split('|');
+          vm.role.role = userMesArray[1]; 
+          vm.role.user_id = userMesArray[0];
         for(var x in vm.postdata){
                 vm.postdata[x] = this.getData(x);
             }
@@ -286,7 +407,7 @@ export default{
                             if(loanterm>100){
                                 vm.postdata.loanterm=0;
                                 Toast({
-                                    message: "意向贷款期限不能大于100月",
+                                    message: "意向贷款期限不能大于100年",
                                     position: 'bottom',
                                     duration: 1500
                                   });

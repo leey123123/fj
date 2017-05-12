@@ -117,7 +117,11 @@ export default{
                 alertcontent:'保存成功',
                 alertPop:false
             },
-            dataAbled:true//是否可以编写false可编写true不可编写
+            dataAbled:true,//是否可以编写false可编写true不可编写
+            role:{
+                 role:'',
+                user_id:''
+              } 
         }
     },
     methods:{
@@ -277,6 +281,11 @@ export default{
             if(vm.dataAbled){
                     return;
                 }
+            if(window.contants.role.jl===vm.role.role){
+                if(!vm.checkCondition()){
+                    return;
+                }
+            }
             vm.addInfo(function(){
                 vm.$router.replace({name:'login'});
                 return;
@@ -287,6 +296,105 @@ export default{
             });
             
         },
+        checkCondition:function(){
+            var vm = this;
+            var postdata = vm.postdata;
+
+            if(!postdata.workcorp){
+                Toast({
+                    message: "请填写工作单位名称",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+            if(!postdata.worknature){
+                Toast({
+                    message: "请选择单位性质",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.department){
+                Toast({
+                    message: "请填写所在部门",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+             
+
+             if(!postdata.headship){
+                Toast({
+                    message: "请填写职位名称",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+
+             if(!postdata.hrname){
+                Toast({
+                    message: "请填写人事部联系人",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+             if(!postdata.hrtelephone||!postdata.hrareacode){
+                Toast({
+                    message: "请填写人事部联系电话",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+             if(!postdata.worktel||!postdata.corparea){
+                Toast({
+                    message: "请填写单位电话",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+             if(!postdata.workzip){
+                Toast({
+                    message: "请填写单位邮编",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.workAddCode){
+                Toast({
+                    message: "请选择工作单位所在地",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+             if(!postdata.workadd){
+                Toast({
+                    message: "请填写单位地址",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            return true;
+        },
         hideAlertPop:function(){
             this.pop.alertPop=false;
         }
@@ -295,6 +403,20 @@ export default{
         var vm = this;
         this.$parent.$parent.menutype=2;
         this.$parent.childmenutype=3;
+        var key = sessionStorage.getItem('key');
+          if(!key){
+            this.$router.replace({name:'login'});
+            return;
+          }
+          var userMes = sessionStorage.getItem('userMes');
+          if(!userMes){
+            this.$router.replace({name:'login'});
+            return;
+          }
+          userMes = this.$Decrypt(userMes,key);
+          var userMesArray = userMes.split('|');
+          vm.role.role = userMesArray[1]; 
+          vm.role.user_id = userMesArray[0];
         for(var x in vm.postdata){
                 vm.postdata[x] = this.getData(x);
             }

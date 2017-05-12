@@ -150,7 +150,11 @@ export default{
             alertcontent:'保存成功',
             alertPop:false
             },
-            dataAbled:true//是否可以编写false可编写true不可编写
+            dataAbled:true,//是否可以编写false可编写true不可编写
+            role:{
+                role:'',
+                user_id:''
+              }
         }
         
         
@@ -329,6 +333,12 @@ export default{
             if(vm.dataAbled){
                     return;
                 }
+            if(window.contants.role.jl===vm.role.role){
+                if(!vm.checkCondition()){
+                    return;
+                }
+            }
+            
             vm.addInfo(function(){
                 vm.$router.replace({name:'login'});
                 return;
@@ -339,6 +349,75 @@ export default{
             });
             
         },
+        checkCondition:function(){
+            var vm = this;
+            var postdata = vm.postdata;
+            if(!postdata.marriage){
+                Toast({
+                    message: "请选择婚姻状况",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+            if(!postdata.nativeflag){
+                Toast({
+                    message: "请选择户籍类型",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.employeetype){
+                Toast({
+                    message: "请选择雇佣类型",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.posionlevel){
+                Toast({
+                    message: "请选择职务级别",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.industryage){
+                Toast({
+                    message: "请填写企业成立年限",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.workbegindate){
+                Toast({
+                    message: "请填写工作年限",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.monthincome){
+                Toast({
+                    message: "请填写月收入",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            return true;
+
+        },
         hideAlertPop:function(){
             this.pop.alertPop=false;
         }
@@ -348,6 +427,20 @@ export default{
         vm.dataAbled = this.getData('dataAbled');
         this.$parent.$parent.menutype=2;
         this.$parent.childmenutype=1;
+        var key = sessionStorage.getItem('key');
+          if(!key){
+            this.$router.replace({name:'login'});
+            return;
+          }
+          var userMes = sessionStorage.getItem('userMes');
+          if(!userMes){
+            this.$router.replace({name:'login'});
+            return;
+          }
+          userMes = this.$Decrypt(userMes,key);
+          var userMesArray = userMes.split('|');
+          vm.role.role = userMesArray[1]; 
+          vm.role.user_id = userMesArray[0];
         for(var x in vm.postdata){
                 vm.postdata[x] = this.getData(x);
             }

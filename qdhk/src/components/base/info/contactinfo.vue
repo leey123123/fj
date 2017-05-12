@@ -130,7 +130,11 @@ export default{
                 alertcontent:'保存成功',
                 alertPop:false
             },
-            dataAbled:true//是否可以编写false可编写true不可编写
+            dataAbled:true,//是否可以编写false可编写true不可编写
+            role:{
+                 role:'',
+                user_id:''
+              }                 
         }
     },
     methods:{
@@ -163,6 +167,11 @@ export default{
             if(vm.dataAbled){
                     return;
                 }
+            if(window.contants.role.jl===vm.role.role){
+                if(!vm.checkCondition()){
+                    return;
+                }
+            }
             vm.addInfo(function(){
                 vm.$router.replace({name:'login'});
                 return;
@@ -173,6 +182,85 @@ export default{
             });
             
         },
+        checkCondition:function(){
+            var vm = this;
+            var postdata = vm.postdata;
+            if(!postdata.partnername){
+                Toast({
+                    message: "请填写配偶联系人姓名",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.partnermobiletelephone){
+                Toast({
+                    message: "请填写配偶联系人手机号码",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.familyname){
+                Toast({
+                    message: "请填写亲属联系人姓名",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.familyrelationship){
+                Toast({
+                    message: "请选择亲属联系人关系",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.familymobiletelephone){
+                Toast({
+                    message: "请填写亲属联系人手机号",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              
+
+              if(!postdata.nofamilyname){
+                Toast({
+                    message: "请填写非亲属联系人姓名",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.nofamilyrelationship){
+                Toast({
+                    message: "请选择非亲属联系人关系",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              if(!postdata.nofamilymobiletelephone){
+                Toast({
+                    message: "请填写非亲属联系人手机号",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              return true;
+          },
         initSelect:function(){
             var vm = this;
 
@@ -216,6 +304,20 @@ export default{
         var vm = this;
         this.$parent.$parent.menutype=2;
         this.$parent.childmenutype=4;
+        var key = sessionStorage.getItem('key');
+          if(!key){
+            this.$router.replace({name:'login'});
+            return;
+          }
+          var userMes = sessionStorage.getItem('userMes');
+          if(!userMes){
+            this.$router.replace({name:'login'});
+            return;
+          }
+          userMes = this.$Decrypt(userMes,key);
+          var userMesArray = userMes.split('|');
+          vm.role.role = userMesArray[1]; 
+          vm.role.user_id = userMesArray[0];
         for(var x in vm.postdata){
                 vm.postdata[x] = this.getData(x);
             }
