@@ -1,7 +1,7 @@
 {
-  "name": "demo",
+  "name": "qdhk",
   "version": "1.0.0",
-  "description": "vuedemo",
+  "description": "渠道获客",
   "main": "index.js",
   "scripts": {
     "dev": "node build/dev-server",
