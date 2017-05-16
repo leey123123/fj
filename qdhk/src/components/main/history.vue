@@ -74,28 +74,7 @@ export default{
         offsetHeight:0,
         scrollHeight:0
       },
-      state:[
-        {
-          value:'0002',
-          text:'撤销'
-        },
-        {
-          value:'0003',
-          text:'客户经理审核'
-        },
-        {
-          value:'0004',
-          text:'审批否决'
-        },
-        {
-          value:'0005',
-          text:'通过'
-        },
-        {
-          value:'0006',
-          text:'不合格'
-        }
-      ]
+      state:[]
     };
   },
   methods:{
@@ -308,6 +287,8 @@ export default{
     }else{
       vm.search.param.status='0002|0004|0005|0006';
     }
+    var dict = JSON.parse(sessionStorage.getItem('qddict'));
+    var state = dict.applystatus;
     vm.queryList();
   },
   watch:{
