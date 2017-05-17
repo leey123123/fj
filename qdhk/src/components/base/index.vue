@@ -359,7 +359,7 @@ export default{
               var userMesArray = userMes.split('|');
               var role = userMesArray[1]; 
               var user_id = userMesArray[0];
-              if(window.contants.role.jl === role){
+              if(window.contants.role.jl === role && process.env.NODE_ENV !== 'development'){
                   var json = vm.checkCondition();
                   if(!json.flag){
                       Toast({
