@@ -288,7 +288,7 @@ export default{
       vm.search.param.status='0002|0004|0005|0006';
     }
     var dict = JSON.parse(sessionStorage.getItem('qddict'));
-    var state = dict.applystatus;
+    vm.state = dict.applystatus;
     vm.queryList();
   },
   watch:{

@@ -54,108 +54,259 @@ export default{
           this.$router.replace({name:'login'});
         },
 
-        /*refuse:function(){
+        checkCondition:function(){
+          var vm = this;
+          var key = sessionStorage.getItem("key");
+          if(!key){
+            vm.$router.replace({name:'login'});
+          }
+          var applymes = sessionStorage.getItem("applymes");
+          if(!applymes){
+            vm.$router.replace({name:'login'});
+          }
+          var postdata = JSON.parse(vm.$Decrypt(applymes,key));
 
-            var vm = this;
-            if(vm.dataAbled){
-                return;
-            }
-            if(vm.roleFlag){
-                return;
-            }
-            var key = sessionStorage.getItem("key");
-            if(!key){
-              this.$router.replace({name:'login'});
-              return;
-            }
-            var item = sessionStorage.getItem('applymes');
-            if(!item){
-              this.$router.replace({name:'login'});
-              return;
-            }
-            var applymes = JSON.parse(this.$Decrypt(item,key));
-            var applyid = applymes['applyid'];
-            console.log(applyid);
-            var url = this.$baseRoot+"ChannelAccessAction?function=RefuseCustomerApply";
-            var params = {'applyid':applyid};
-            var json = {param:params}
-            this.$http.post(url,json).then(function(data){
-                var data = data.body;
-                var errorcode = data['error_no'];
-                var errorinfo = data['error_info'];
-                var results = data.results;
-                if(errorcode!==0 && errorcode!=='0'){
-                    Toast({
-                        message: errorinfo,
-                        position: 'bottom',
-                        duration: 1500
-                      });
-                    if(errorcode==="-998"||errorcode===-998){
-                          setTimeout(vm.tologin, 1500);
-                        }
-                      
-                    return;
-                }
+          itemJson.productid = this.productid;
+            itemJson.solutionid = this.chhoiceSoId;
+            itemJson.goldloancustomertype = this.chhoiceSoId;
 
-                vm.pop.alertPop=true;
-                vm.pop.alertcontent="回绝成功";
-                setTimeout(vm.hideAlertPop,1000); 
-                
-                
-                
+          if(!postdata.productid){
+            flag = false;
+              message = "请选择意向贷款方案";
+            }
+
+          if(!postdata.solutionid){
+            flag = false;
+              message = "请选择意向贷款方案";
+            }
+
+          if(!postdata.goldloancustomertype){
+            flag = false;
+              message = "请选择意向贷款方案";
+            }
+
+          if(!postdata.marriage){
+            flag = false;
+              message = "请选择婚姻状况";
+            }
+
+          if(!postdata.nativeflag){
+            flag = false;
+              message = "请选择户籍类型";
+          }
+
+          if(!postdata.employeetype){
+            flag = false;
+              message = "请选择雇佣类型";
+          }
+
+          if(!postdata.posionlevel){
+            flag = false;
+              message = "请选择职务级别";
+          }
+
+          if(!postdata.industryage){
+            flag = false;
+              message = "请填写企业成立年限";
+          }
+
+          if(!postdata.workbegindate){
+            flag = false;
+              message = "请填写工作年限";
+          }
+
+          if(!postdata.monthincome){
+            flag = false;
+              message = "请填写月收入";
+          }
+
+          if(!postdata.partnername){
+            flag = false;
+              message = "请填写配偶联系人姓名";
+            }
+
+            if(!postdata.partnermobiletelephone){
+            flag = false;
+              message = "请填写配偶联系人手机号码";
+            }
+
+            if(!postdata.familyname){
+            flag = false;
+              message = "请填写亲属联系人姓名";
+            }
+
+            if(!postdata.familyrelationship){
+            flag = false;
+              message = "请选择亲属联系人关系";
+            }
+
+            if(!postdata.familymobiletelephone){
+            flag = false;
+              message = "请填写亲属联系人手机号";
+            }
+
             
-            }).catch(function(data){                
 
-            });
+            if(!postdata.nofamilyname){
+            flag = false;
+              message = "请填写非亲属联系人姓名";
+            }
+
+            if(!postdata.nofamilyrelationship){
+            flag = false;
+              message = "请选择非亲属联系人关系";
+            }
+
+            if(!postdata.nofamilymobiletelephone){
+            flag = false;
+              message = "请填写非亲属联系人手机号";
+            }
+            
+            
+            if(!postdata.businesssum){
+            flag = false;
+              message = "请填写输入金额";
+            }
+
+            if(!postdata.loansUsedNature){
+            flag = false;
+              message = "请选择贷款用途性质";
+            }
+
+            if(!postdata.loanused){
+            flag = false;
+              message = "请选择贷款用途";
+            }
+
+            if(!postdata.loanterm){
+            flag = false;
+              message = "请填写意向贷款期限";
+            }
+
+            if(!postdata.accountinbank){
+            flag = false;
+              message = "请选择收款行";
+            }
+
+            if(!postdata.gatheringname){
+            flag = false;
+              message = "请填写收款账户户名";
+            }
+
+            if(!postdata.gatheringcardid){
+            flag = false;
+              message = "请填写收款卡号";
+            }
+
+            if(!postdata.paymentcardbank){
+            flag = false;
+              message = "请选择还款行";
+            }
+            
+            if(!postdata.gatheroutgname){
+            flag = false;
+              message = "请填写还款账户户名";
+            }
+
+            if(!postdata.paymentcardid){
+            flag = false;
+              message = "请填写还款卡号";
+            }
+            
+            
+          if(!postdata.eduexperience){
+            flag = false;
+              message = "请选择教育程度";
+            }
+
+          if(!postdata.homestatus){
+            flag = false;
+              message = "请选择居住状况";
+            }
+
+          if(!postdata.familyaddcode){
+            flag = false;
+              message = "请选择居住地址";
+            }
+
+          if(!postdata.homeadd){
+            flag = false;
+              message = "请填写居住地址详细";
+            }
+
+          if(!postdata.childflag){
+            flag = false;
+              message = "请选择有无子女";
+            }
+
+            
+          if(!postdata.workcorp){
+            flag = false;
+              message = "请填写工作单位名称";
+            }
+
+          if(!postdata.worknature){
+            flag = false;
+              message = "请选择单位性质";
+          }
+
+          if(!postdata.department){
+            flag = false;
+              message = "请填写所在部门";
+          }
+
+           
+
+           if(!postdata.headship){
+            flag = false;
+              message = "请填写职位名称";
+          }
+
+
+           if(!postdata.hrname){
+            flag = false;
+              message = "请填写人事部联系人";
+          }
+
+           if(!postdata.hrtelephone||!postdata.hrareacode){
+            flag = false;
+              message = "请填写人事部联系电话";
+          }
+
+           if(!postdata.worktel||!postdata.corparea){
+            flag = false;
+              message = "请填写单位电话";
+          }
+
+           if(!postdata.workzip){
+            flag = false;
+              message = "请填写单位邮编";
+          }
+
+          if(!postdata.workAddCode){
+            flag = false;
+              message = "请选择工作单位所在地";
+          }
+
+           if(!postdata.workadd){
+            flag = false;
+              message = "请填写单位地址";
+          }
+
+
+
+          var flag = true;
+          var message = "";
+          if(!flag){
+            Toast({
+                message: message,
+                position: 'bottom',
+                duration: 1500
+              });
+            }
+
+          return flag;
         },
-        cancelLoan:function(){
-            var vm = this;
-            if(vm.dataAbled){
-                return;
-            }
-            var key = sessionStorage.getItem("key");
-            if(!key){
-              this.$router.replace({name:'login'});
-              return;
-            }
-            var item = sessionStorage.getItem('applymes');
-            if(!item){
-              this.$router.replace({name:'login'});
-              return;
-            }
-            var applymes = JSON.parse(this.$Decrypt(item,key));
-            var applyid = applymes['applyid'];
-            var url = this.$baseRoot+"ChannelAccessAction?function=RepealApply";
-            var params = {'applyid':applyid};
-            var json = {param:params}
-            this.$http.post(url,json).then(function(data){
-                var data = data.body;
-                var errorcode = data['error_no'];
-                var errorinfo = data['error_info'];
-                var results = data.results;
-                if(errorcode!==0 && errorcode!=='0'){
-                    Toast({
-                        message: errorinfo,
-                        position: 'bottom',
-                        duration: 1500
-                      });
-                      if(errorcode==="-998"||errorcode===-998){
-                          setTimeout(vm.tologin, 1500);
-                        }
-                    return;
-                }
-
-                vm.pop.alertPop=true;
-                vm.pop.alertcontent="撤销成功";
-                setTimeout(vm.hideAlertPop,1000); 
-                
-                
-                
-            
-            }).catch(function(data){                
-
-            });
-        },*/
         submitloan:function(){
             var vm = this;
             if(vm.dataAbled){
@@ -175,6 +326,11 @@ export default{
               var userMesArray = userMes.split('|');
               var role = userMesArray[1]; 
               var user_id = userMesArray[0];
+              if(window.contants.role.jl === role){
+                  if(!vm.checkCondition()){
+                      return;
+                  }
+              }
 
             vm.addInfo(function(){
                 vm.$router.replace({name:'login'});

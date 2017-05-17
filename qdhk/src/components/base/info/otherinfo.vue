@@ -298,53 +298,42 @@ export default{
         checkCondition:function(){
             var vm = this;
             var postdata = vm.postdata;
-
+            var flag = true;
+            var message = "";
             if(!postdata.eduexperience){
-                Toast({
-                    message: "请选择教育程度",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请选择教育程度";
               }
 
             if(!postdata.homestatus){
-                Toast({
-                    message: "请选择居住状况",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请选择居住状况";
               }
 
             if(!postdata.familyaddcode){
-                Toast({
-                    message: "请选择居住地址",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请选择居住地址";
               }
 
             if(!postdata.homeadd){
-                Toast({
-                    message: "请填写居住地址详细",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请填写居住地址详细";
               }
 
             if(!postdata.childflag){
+                flag = false;
+                message = "请选择有无子女";
+              }
+
+            if(!flag){
                 Toast({
-                    message: "请选择有无子女",
+                    message: message,
                     position: 'bottom',
                     duration: 1500
                   });
-                return false;
-              }
+                }
 
-              return true;
+            return flag;
           },
         hideAlertPop:function(){
             this.pop.alertPop=false;

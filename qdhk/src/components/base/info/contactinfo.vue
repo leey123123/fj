@@ -185,81 +185,58 @@ export default{
         checkCondition:function(){
             var vm = this;
             var postdata = vm.postdata;
+            var flag = true;
+            var message = "";
             if(!postdata.partnername){
-                Toast({
-                    message: "请填写配偶联系人姓名",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请填写配偶联系人姓名";
               }
 
               if(!postdata.partnermobiletelephone){
-                Toast({
-                    message: "请填写配偶联系人手机号码",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请填写配偶联系人手机号码";
               }
 
               if(!postdata.familyname){
-                Toast({
-                    message: "请填写亲属联系人姓名",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请填写亲属联系人姓名";
               }
 
               if(!postdata.familyrelationship){
-                Toast({
-                    message: "请选择亲属联系人关系",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请选择亲属联系人关系";
               }
 
               if(!postdata.familymobiletelephone){
-                Toast({
-                    message: "请填写亲属联系人手机号",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请填写亲属联系人手机号";
               }
 
               
 
               if(!postdata.nofamilyname){
-                Toast({
-                    message: "请填写非亲属联系人姓名",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请填写非亲属联系人姓名";
               }
 
               if(!postdata.nofamilyrelationship){
-                Toast({
-                    message: "请选择非亲属联系人关系",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请选择非亲属联系人关系";
               }
 
               if(!postdata.nofamilymobiletelephone){
+                flag = false;
+                message = "请填写非亲属联系人手机号";
+              }
+              if(!flag){
                 Toast({
-                    message: "请填写非亲属联系人手机号",
+                    message: message,
                     position: 'bottom',
                     duration: 1500
                   });
-                return false;
-              }
+                }
 
-              return true;
+                return flag;
           },
         initSelect:function(){
             var vm = this;

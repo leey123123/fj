@@ -268,100 +268,69 @@ export default{
         checkCondition:function(){
             var vm = this;
             var postdata = vm.postdata;
-
-            if(!postdata.businesssum){
-                Toast({
-                    message: "请填写输入金额",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+            var flag = true;
+            var message = "";
+            
+              if(!postdata.businesssum){
+                flag = false;
+                message = "请填写输入金额";
               }
 
               if(!postdata.loansUsedNature){
-                Toast({
-                    message: "请选择贷款用途性质",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请选择贷款用途性质";
               }
 
               if(!postdata.loanused){
-                Toast({
-                    message: "请选择贷款用途",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请选择贷款用途";
               }
 
               if(!postdata.loanterm){
-                Toast({
-                    message: "请填写意向贷款期限",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请填写意向贷款期限";
               }
 
               if(!postdata.accountinbank){
-                Toast({
-                    message: "请选择收款行",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请选择收款行";
               }
 
               if(!postdata.gatheringname){
-                Toast({
-                    message: "请填写收款账户户名",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请填写收款账户户名";
               }
 
               if(!postdata.gatheringcardid){
-                Toast({
-                    message: "请填写收款卡号",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请填写收款卡号";
               }
 
               if(!postdata.paymentcardbank){
-                Toast({
-                    message: "请选择还款行",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请选择还款行";
               }
               
               if(!postdata.gatheroutgname){
-                Toast({
-                    message: "请填写还款账户户名",
-                    position: 'bottom',
-                    duration: 1500
-                  });
-                return false;
+                flag = false;
+                message = "请填写还款账户户名";
               }
 
               if(!postdata.paymentcardid){
+                flag = false;
+                message = "请填写还款卡号";
+              }
+              
+
+              if(!flag){
                 Toast({
-                    message: "请填写还款卡号",
+                    message: message,
                     position: 'bottom',
                     duration: 1500
                   });
-                return false;
-              }
+                }
 
-              
-
-              return true;
+                return flag;
           },
         hideAlertPop:function(){
             this.pop.alertPop=false;
