@@ -352,52 +352,70 @@ export default{
         checkCondition:function(){
             var vm = this;
             var postdata = vm.postdata;
-            var flag = true;
-            var message = "";
             if(!postdata.marriage){
-                flag = false;
-                message = "请选择婚姻状况";
-              }
-
-            if(!postdata.nativeflag){
-                flag = false;
-                message = "请选择户籍类型";
-            }
-
-            if(!postdata.employeetype){
-                flag = false;
-                message = "请选择雇佣类型";
-            }
-
-            if(!postdata.posionlevel){
-                flag = false;
-                message = "请选择职务级别";
-            }
-
-            if(!postdata.industryage){
-                flag = false;
-                message = "请填写企业成立年限";
-            }
-
-            if(!postdata.workbegindate){
-                flag = false;
-                message = "请填写工作年限";
-            }
-
-            if(!postdata.monthincome){
-                flag = false;
-                message = "请填写月收入";
-            }
-
-            if(!flag){
                 Toast({
-                    message: message,
+                    message: "请选择婚姻状况",
                     position: 'bottom',
                     duration: 1500
                   });
+                return false;
+              }
+
+            if(!postdata.nativeflag){
+                Toast({
+                    message: "请选择户籍类型",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
             }
 
-            return flag;
+            if(!postdata.employeetype){
+                Toast({
+                    message: "请选择雇佣类型",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.posionlevel){
+                Toast({
+                    message: "请选择职务级别",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.industryage){
+                Toast({
+                    message: "请填写企业成立年限",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.workbegindate){
+                Toast({
+                    message: "请填写工作年限",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.monthincome){
+                Toast({
+                    message: "请填写月收入",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            return true;
 
         },
         hideAlertPop:function(){

@@ -299,70 +299,101 @@ export default{
         checkCondition:function(){
             var vm = this;
             var postdata = vm.postdata;
-            var flag = true;
-            var message = "";
+
             if(!postdata.workcorp){
-                flag = false;
-                message = "请填写工作单位名称";
+                Toast({
+                    message: "请填写工作单位名称",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
               }
 
             if(!postdata.worknature){
-                flag = false;
-                message = "请选择单位性质";
+                Toast({
+                    message: "请选择单位性质",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
             }
 
             if(!postdata.department){
-                flag = false;
-                message = "请填写所在部门";
+                Toast({
+                    message: "请填写所在部门",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
             }
 
              
 
              if(!postdata.headship){
-                flag = false;
-                message = "请填写职位名称";
+                Toast({
+                    message: "请填写职位名称",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
             }
 
 
              if(!postdata.hrname){
-                flag = false;
-                message = "请填写人事部联系人";
-            }
-
-             if(!postdata.hrtelephone||!postdata.hrareacode){
-                flag = false;
-                message = "请填写人事部联系电话";
-            }
-
-             if(!postdata.worktel||!postdata.corparea){
-                flag = false;
-                message = "请填写单位电话";
-            }
-
-             if(!postdata.workzip){
-                flag = false;
-                message = "请填写单位邮编";
-            }
-
-            if(!postdata.workAddCode){
-                flag = false;
-                message = "请选择工作单位所在地";
-            }
-
-             if(!postdata.workadd){
-                flag = false;
-                message = "请填写单位地址";
-            }
-
-            if(!flag){
                 Toast({
-                    message: message,
+                    message: "请填写人事部联系人",
                     position: 'bottom',
                     duration: 1500
                   });
-                }
+                return false;
+            }
 
-            return flag;
+             if(!postdata.hrtelephone||!postdata.hrareacode){
+                Toast({
+                    message: "请填写人事部联系电话",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+             if(!postdata.worktel||!postdata.corparea){
+                Toast({
+                    message: "请填写单位电话",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+             if(!postdata.workzip){
+                Toast({
+                    message: "请填写单位邮编",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            if(!postdata.workAddCode){
+                Toast({
+                    message: "请选择工作单位所在地",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+             if(!postdata.workadd){
+                Toast({
+                    message: "请填写单位地址",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+            }
+
+            return true;
         },
         hideAlertPop:function(){
             this.pop.alertPop=false;

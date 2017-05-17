@@ -64,7 +64,7 @@ export default{
           certid:'',
           startdate:'',
           enddate:'',
-          status:'0002|0004|0005|0006'
+          status:'0002|0004|0005|0006|0007'
         }
       },
       datalist:[],
@@ -85,9 +85,9 @@ export default{
       vm.pagenum = 0;
       vm.datalist=[];
       if(vm.role.role === window.contants.role.qd){
-        vm.search.param.status='0002|0003|0004|0005|0006';
+        vm.search.param.status='0002|0003|0004|0005|0006|0007';
       }else{
-        vm.search.param.status='0002|0004|0005|0006';
+        vm.search.param.status='0002|0004|0005|0006|0007';
       }
       this.queryList();
 
@@ -283,9 +283,9 @@ export default{
     vm.role.role = userMesArray[1]; 
     vm.role.user_id = userMesArray[0];
     if(userMesArray[1]===window.contants.role.qd){
-      vm.search.param.status='0002|0003|0004|0005|0006';
+      vm.search.param.status='0002|0003|0004|0005|0006|0007';
     }else{
-      vm.search.param.status='0002|0004|0005|0006';
+      vm.search.param.status='0002|0004|0005|0006|0007';
     }
     var dict = JSON.parse(sessionStorage.getItem('qddict'));
     vm.state = dict.applystatus;

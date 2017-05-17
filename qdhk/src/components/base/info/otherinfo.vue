@@ -298,42 +298,53 @@ export default{
         checkCondition:function(){
             var vm = this;
             var postdata = vm.postdata;
-            var flag = true;
-            var message = "";
+
             if(!postdata.eduexperience){
-                flag = false;
-                message = "请选择教育程度";
-              }
-
-            if(!postdata.homestatus){
-                flag = false;
-                message = "请选择居住状况";
-              }
-
-            if(!postdata.familyaddcode){
-                flag = false;
-                message = "请选择居住地址";
-              }
-
-            if(!postdata.homeadd){
-                flag = false;
-                message = "请填写居住地址详细";
-              }
-
-            if(!postdata.childflag){
-                flag = false;
-                message = "请选择有无子女";
-              }
-
-            if(!flag){
                 Toast({
-                    message: message,
+                    message: "请选择教育程度",
                     position: 'bottom',
                     duration: 1500
                   });
-                }
+                return false;
+              }
 
-            return flag;
+            if(!postdata.homestatus){
+                Toast({
+                    message: "请选择居住状况",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+            if(!postdata.familyaddcode){
+                Toast({
+                    message: "请选择居住地址",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+            if(!postdata.homeadd){
+                Toast({
+                    message: "请填写居住地址详细",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+            if(!postdata.childflag){
+                Toast({
+                    message: "请选择有无子女",
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                return false;
+              }
+
+              return true;
           },
         hideAlertPop:function(){
             this.pop.alertPop=false;

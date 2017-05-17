@@ -66,246 +66,279 @@ export default{
           }
           var postdata = JSON.parse(vm.$Decrypt(applymes,key));
 
-          itemJson.productid = this.productid;
-            itemJson.solutionid = this.chhoiceSoId;
-            itemJson.goldloancustomertype = this.chhoiceSoId;
-
-          if(!postdata.productid){
-            flag = false;
-              message = "请选择意向贷款方案";
+         var returnJson = {};
+          returnJson.flag = true;
+          returnJson.message = "";
+           if(!postdata.productid){
+            returnJson.flag = false;
+              returnJson.message = "请选择贷款方案";
+              return returnJson;
             }
 
-          if(!postdata.solutionid){
-            flag = false;
-              message = "请选择意向贷款方案";
+            if(!postdata.solutionid){
+            returnJson.flag = false;
+              returnJson.message = "请选择贷款方案";
+              return returnJson;
             }
 
-          if(!postdata.goldloancustomertype){
-            flag = false;
-              message = "请选择意向贷款方案";
+            if(!postdata.goldloancustomertype){
+            returnJson.flag = false;
+              returnJson.message = "请选择贷款方案";
+              return returnJson;
             }
 
-          if(!postdata.marriage){
-            flag = false;
-              message = "请选择婚姻状况";
+            if(!postdata.marriage){
+            returnJson.flag = false;
+              returnJson.message = "基本信息，请选择婚姻状况";
+              return returnJson;
             }
 
-          if(!postdata.nativeflag){
-            flag = false;
-              message = "请选择户籍类型";
-          }
+            if(!postdata.nativeflag){
+            returnJson.flag = false;
+              returnJson.message = "基本信息，请选择户籍类型";
+              return returnJson;
+            }
 
-          if(!postdata.employeetype){
-            flag = false;
-              message = "请选择雇佣类型";
-          }
+            if(!postdata.employeetype){
+            returnJson.flag = false;
+              returnJson.message = "基本信息，请选择雇佣类型";
+              return returnJson;
+            }
 
-          if(!postdata.posionlevel){
-            flag = false;
-              message = "请选择职务级别";
-          }
+            if(!postdata.posionlevel){
+            returnJson.flag = false;
+              returnJson.message = "基本信息，请选择职务级别";
+              return returnJson;
+            }
 
-          if(!postdata.industryage){
-            flag = false;
-              message = "请填写企业成立年限";
-          }
+            if(!postdata.industryage){
+            returnJson.flag = false;
+              returnJson.message = "基本信息，请填写企业成立年限";
+              return returnJson;
+            }
 
-          if(!postdata.workbegindate){
-            flag = false;
-              message = "请填写工作年限";
-          }
+            if(!postdata.workbegindate){
+            returnJson.flag = false;
+              returnJson.message = "基本信息，请填写工作年限";
+              return returnJson;
+            }
 
-          if(!postdata.monthincome){
-            flag = false;
-              message = "请填写月收入";
-          }
+            if(!postdata.monthincome){
+            returnJson.flag = false;
+              returnJson.message = "基本信息，请填写月收入";
+              return returnJson;
+            }
 
-          if(!postdata.partnername){
-            flag = false;
-              message = "请填写配偶联系人姓名";
+            if(!postdata.partnername){
+            returnJson.flag = false;
+              returnJson.message = "联系人信息，请填写配偶联系人姓名";
+              return returnJson;
             }
 
             if(!postdata.partnermobiletelephone){
-            flag = false;
-              message = "请填写配偶联系人手机号码";
+            returnJson.flag = false;
+              returnJson.message = "联系人信息，请填写配偶联系人手机号码";
+              return returnJson;
             }
 
             if(!postdata.familyname){
-            flag = false;
-              message = "请填写亲属联系人姓名";
+            returnJson.flag = false;
+              returnJson.message = "联系人信息，请填写亲属联系人姓名";
+              return returnJson;
             }
 
             if(!postdata.familyrelationship){
-            flag = false;
-              message = "请选择亲属联系人关系";
+            returnJson.flag = false;
+              returnJson.message = "联系人信息，请选择亲属联系人关系";
+              return returnJson;
             }
 
             if(!postdata.familymobiletelephone){
-            flag = false;
-              message = "请填写亲属联系人手机号";
+            returnJson.flag = false;
+              returnJson.message = "联系人信息，请填写亲属联系人手机号";
+              return returnJson;
             }
 
             
 
             if(!postdata.nofamilyname){
-            flag = false;
-              message = "请填写非亲属联系人姓名";
+            returnJson.flag = false;
+              returnJson.message = "联系人信息，请填写非亲属联系人姓名";
+              return returnJson;
             }
 
             if(!postdata.nofamilyrelationship){
-            flag = false;
-              message = "请选择非亲属联系人关系";
+            returnJson.flag = false;
+              returnJson.message = "联系人信息，请选择非亲属联系人关系";
+              return returnJson;
             }
 
             if(!postdata.nofamilymobiletelephone){
-            flag = false;
-              message = "请填写非亲属联系人手机号";
+            returnJson.flag = false;
+              returnJson.message = "联系人信息，请填写非亲属联系人手机号";
+              return returnJson;
             }
             
             
             if(!postdata.businesssum){
-            flag = false;
-              message = "请填写输入金额";
+            returnJson.flag = false;
+              returnJson.message = "贷款信息，请填写输入金额";
+              return returnJson;
             }
 
             if(!postdata.loansUsedNature){
-            flag = false;
-              message = "请选择贷款用途性质";
+            returnJson.flag = false;
+              returnJson.message = "贷款信息，请选择贷款用途性质";
+              return returnJson;
             }
 
             if(!postdata.loanused){
-            flag = false;
-              message = "请选择贷款用途";
+            returnJson.flag = false;
+              returnJson.message = "贷款信息，请选择贷款用途";
+              return returnJson;
             }
 
             if(!postdata.loanterm){
-            flag = false;
-              message = "请填写意向贷款期限";
+            returnJson.flag = false;
+              returnJson.message = "贷款信息，请填写意向贷款期限";
+              return returnJson;
             }
 
             if(!postdata.accountinbank){
-            flag = false;
-              message = "请选择收款行";
+            returnJson.flag = false;
+              returnJson.message = "贷款信息，请选择收款行";
+              return returnJson;
             }
 
             if(!postdata.gatheringname){
-            flag = false;
-              message = "请填写收款账户户名";
+            returnJson.flag = false;
+              returnJson.message = "贷款信息，请填写收款账户户名";
+              return returnJson;
             }
 
             if(!postdata.gatheringcardid){
-            flag = false;
-              message = "请填写收款卡号";
+            returnJson.flag = false;
+              returnJson.message = "贷款信息，请填写收款卡号";
+              return returnJson;
             }
 
             if(!postdata.paymentcardbank){
-            flag = false;
-              message = "请选择还款行";
+            returnJson.flag = false;
+              returnJson.message = "贷款信息，请选择还款行";
+              return returnJson;
             }
             
             if(!postdata.gatheroutgname){
-            flag = false;
-              message = "请填写还款账户户名";
+            returnJson.flag = false;
+              returnJson.message = "贷款信息，请填写还款账户户名";
+              return returnJson;
             }
 
             if(!postdata.paymentcardid){
-            flag = false;
-              message = "请填写还款卡号";
+            returnJson.flag = false;
+              returnJson.message = "贷款信息，请填写还款卡号";
+              return returnJson;
             }
             
             
-          if(!postdata.eduexperience){
-            flag = false;
-              message = "请选择教育程度";
+            if(!postdata.eduexperience){
+            returnJson.flag = false;
+              returnJson.message = "其他信息，请选择教育程度";
+              return returnJson;
             }
 
-          if(!postdata.homestatus){
-            flag = false;
-              message = "请选择居住状况";
+            if(!postdata.homestatus){
+            returnJson.flag = false;
+              returnJson.message = "其他信息，请选择居住状况";
+              return returnJson;
             }
 
-          if(!postdata.familyaddcode){
-            flag = false;
-              message = "请选择居住地址";
+            if(!postdata.familyaddcode){
+            returnJson.flag = false;
+              returnJson.message = "其他信息，请选择居住地址";
+              return returnJson;
             }
 
-          if(!postdata.homeadd){
-            flag = false;
-              message = "请填写居住地址详细";
+            if(!postdata.homeadd){
+            returnJson.flag = false;
+              returnJson.message = "其他信息，请填写居住地址详细";
+              return returnJson;
             }
 
-          if(!postdata.childflag){
-            flag = false;
-              message = "请选择有无子女";
+            if(!postdata.childflag){
+            returnJson.flag = false;
+              returnJson.message = "其他信息，请选择有无子女";
+              return returnJson;
             }
 
             
-          if(!postdata.workcorp){
-            flag = false;
-              message = "请填写工作单位名称";
+            if(!postdata.workcorp){
+            returnJson.flag = false;
+              returnJson.message = "工作信息，请填写工作单位名称";
+              return returnJson;
             }
 
-          if(!postdata.worknature){
-            flag = false;
-              message = "请选择单位性质";
-          }
-
-          if(!postdata.department){
-            flag = false;
-              message = "请填写所在部门";
-          }
-
-           
-
-           if(!postdata.headship){
-            flag = false;
-              message = "请填写职位名称";
-          }
-
-
-           if(!postdata.hrname){
-            flag = false;
-              message = "请填写人事部联系人";
-          }
-
-           if(!postdata.hrtelephone||!postdata.hrareacode){
-            flag = false;
-              message = "请填写人事部联系电话";
-          }
-
-           if(!postdata.worktel||!postdata.corparea){
-            flag = false;
-              message = "请填写单位电话";
-          }
-
-           if(!postdata.workzip){
-            flag = false;
-              message = "请填写单位邮编";
-          }
-
-          if(!postdata.workAddCode){
-            flag = false;
-              message = "请选择工作单位所在地";
-          }
-
-           if(!postdata.workadd){
-            flag = false;
-              message = "请填写单位地址";
-          }
-
-
-
-          var flag = true;
-          var message = "";
-          if(!flag){
-            Toast({
-                message: message,
-                position: 'bottom',
-                duration: 1500
-              });
+            if(!postdata.worknature){
+            returnJson.flag = false;
+              returnJson.message = "工作信息，请选择单位性质";
+              return returnJson;
             }
 
-          return flag;
+            if(!postdata.department){
+            returnJson.flag = false;
+              returnJson.message = "工作信息，请填写所在部门";
+              return returnJson;
+            }
+
+             
+
+             if(!postdata.headship){
+            returnJson.flag = false;
+              returnJson.message = "工作信息，请填写职位名称";
+              return returnJson;
+            }
+
+
+             if(!postdata.hrname){
+            returnJson.flag = false;
+              returnJson.message = "工作信息，请填写人事部联系人";
+              return returnJson;
+            }
+
+             if(!postdata.hrtelephone||!postdata.hrareacode){
+            returnJson.flag = false;
+              returnJson.message = "工作信息，请填写人事部联系电话";
+              return returnJson;
+            }
+
+             if(!postdata.worktel||!postdata.corparea){
+            returnJson.flag = false;
+              returnJson.message = "工作信息，请填写单位电话";
+              return returnJson;
+            }
+
+             if(!postdata.workzip){
+            returnJson.flag = false;
+              returnJson.message = "工作信息，请填写单位邮编";
+              return returnJson;
+            }
+
+            if(!postdata.workAddCode){
+            returnJson.flag = false;
+              returnJson.message = "工作信息，请选择工作单位所在地";
+              return returnJson;
+            }
+
+             if(!postdata.workadd){
+            returnJson.flag = false;
+              returnJson.message = "工作信息，请填写单位地址";
+              return returnJson;
+            }
+
+
+
+
+          return returnJson;
         },
         submitloan:function(){
             var vm = this;
@@ -327,7 +360,13 @@ export default{
               var role = userMesArray[1]; 
               var user_id = userMesArray[0];
               if(window.contants.role.jl === role){
-                  if(!vm.checkCondition()){
+                  var json = vm.checkCondition();
+                  if(!json.flag){
+                      Toast({
+                        message: json.message,
+                        position: 'bottom',
+                        duration: 1500
+                      });
                       return;
                   }
               }
