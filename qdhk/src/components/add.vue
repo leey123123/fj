@@ -348,8 +348,10 @@ export default{
           vm.role.role = userMesArray[1]; 
           vm.role.user_id = userMesArray[0];
 
+          var mes = sessionStorage.getItem("addMestemp")||"{}";
+          mes = JSON.parse(mes);
           for(var x in vm.applyMes){
-            vm.applyMes[x] = this.getData(x);
+            vm.applyMes[x] = mes[x];
           }
           this.initselect();
               
@@ -553,6 +555,7 @@ export default{
     watch:{
         applyMes : {
             handler:function(curVal,oldVal){
+                    var vm = this;
                     var idCard18 = curVal.certid;
 　　　　　　　　　　if(idCard18){
                         if(idCard18.length===18){
@@ -568,7 +571,8 @@ export default{
                           this.applyMes.birthday = year+"-"+month+"-"+day;
                         }
                     }
-
+                    var mes = JSON.stringify(vm.applyMes);
+                    sessionStorage.setItem("addMestemp",mes);
 　　　　　　　　　　},
 　　　　　　　　　　deep:true
             }
