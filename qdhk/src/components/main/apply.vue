@@ -197,19 +197,10 @@ export default{
     },
     searchClear:function(){
       var vm = this;
-      if(vm.role.role===window.contants.role.qd){//渠道登陆
-        vm.search.status='0001';
-
-      }else if(vm.role.role===window.contants.role.jl){//客户经理登陆
-        vm.search.status='0003';
-      }
-      vm.search={
-        certid:'',
-        customername:'',
-        startdate:'',
-        enddate:'',
-        status:''
-      };
+      vm.search.certid = "";
+      vm.search.customername = "";
+      vm.search.startdate = "";
+      vm.search.enddate = "";
     },
     docheck:function(){
       var me = this;
