@@ -115,7 +115,8 @@ import '../js/lrz.bundle.js'
                         alert(rst.base64);
                     })
                     .catch(function (err) {
-                        console.log(err)
+                        console.log(err);
+                        alert(err);
                     })
                     .always(function () {
                         // 清空文件上传控件的值
