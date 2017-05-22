@@ -112,6 +112,7 @@ import '../js/lrz.bundle.js'
                     .then(function (rst) {
                         self.imgposition = rst.base64;
                         self.pshow = true;
+                        alert(rst.base64);
                     })
                     .catch(function (err) {
                         console.log(err)
