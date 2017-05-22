@@ -112,11 +112,9 @@ import '../js/lrz.all.bundle.js'
                     .then(function (rst) {
                         self.imgposition = rst.base64;
                         self.pshow = true;
-                        alert(rst.base64);
                     })
                     .catch(function (err) {
                         console.log(err);
-                        alert(err);
                     })
                     .always(function () {
                         // 清空文件上传控件的值
