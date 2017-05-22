@@ -87,7 +87,7 @@
     
 </template>
 <script>
-import '../js/lrz.bundle.js'
+import '../js/lrz.all.bundle.js'
     export default{
         data:function(){
             return {
