@@ -74,6 +74,11 @@ export default {
                         
                         return;
                     }
+                    var results = data.results||[];
+                    var result = results[0]||{};
+                    if(result.authcode){
+                        alert(result.authcode);
+                    }
                     this.timer = setTimeout(this.countdown,1000);
                     
                     
