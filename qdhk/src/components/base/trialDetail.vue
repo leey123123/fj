@@ -319,7 +319,9 @@ var commomState =[
                         postjson.monthEndowmentInsurance=pagedata.monthEndowmentInsurance;  
                         
                     }else{
-                        postjson.localhouseflag='';
+                        if(pagedata.solutionlist.indexOf('0130')==-1){//车贷
+                            postjson.localhouseflag='';
+                        }
                         postjson.monthEndowmentInsurance='';
                     }
                     if(pagedata.solutionlist.indexOf('0100')>-1){//保单
