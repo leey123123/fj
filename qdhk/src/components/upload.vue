@@ -200,7 +200,13 @@ import '../js/lrz.all.bundle.js'
                 }
                 var results = data.results;
                 var sbData = results[0];
-                vm.extend(sbData);
+                var jsonStr = sessionStorage.getItem("addMestemp")||"{}";
+                var json = JSON.parse(jsonStr);
+                for(var a in sbData){
+                  json[a] = sbData[a];
+                }
+                var mes = JSON.stringify(json);
+                sessionStorage.setItem("addMestemp",mes);
                 vm.$router.replace({name:'add'});
                 
                 
