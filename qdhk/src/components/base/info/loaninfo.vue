@@ -20,7 +20,7 @@
             <label class="box_flex">意向贷款期限</label>
             <div class="tims-count">
                 <i class="input-minus" @click="doloanterm(false)">-</i>
-                <input type="text" name="" value="" class="box_flex years-input" v-model="postdata.loanterm" :readonly="dataAbled">
+                <input type="text" name="" value="" class="box_flex years-input" v-model="postdata.loanterm" readonly="true">
                 <i class="input-plus" @click="doloanterm(true)">+</i>
             </div>
             <p class="apply-icon">年</p>
@@ -29,12 +29,6 @@
 
 
     <ul class="apply-input-info changing-info list-group-top">
-
-        <li @click="accountinbankshow()">
-            <label>收款行</label>
-            <input type="text" name="" :value="getdicname('accountinbank',postdata.accountinbank)" class="box_flex" placeholder="请选择收款行" readonly="true">
-            <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
-        </li>
         <li>
             <label>收款账户户名</label>
             <input type="text" name="" value="" placeholder="请输入收款账户户名" class="box_flex"  v-model="postdata.gatheringname"  :readonly="dataAbled">
@@ -43,21 +37,26 @@
             <label>收款卡号</label>
             <input type="text" name="" value="" placeholder="请输入收款卡号" class="box_flex"  v-model="postdata.gatheringcardid"   maxlength="50" :readonly="dataAbled">
         </li>
+        <li @click="accountinbankshow()">
+            <label>收款行</label>
+            <input type="text" name="" :value="getdicname('accountinbank',postdata.accountinbank)" class="box_flex" placeholder="请选择收款行" readonly="true">
+            <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
+        </li>
     </ul>
 
     <ul class="apply-input-info changing-info list-group-top">
-        <li @click="paymentcardbankshow()">
-            <label>还款行</label>
-            <input type="text" name="" :value="getdicname('paymentcardbank',postdata.paymentcardbank)" class="box_flex" placeholder="请选择还款行" readonly="true">
-            <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
-        </li>
         <li>
             <label>还款账户户名</label>
-            <input type="text" name="" value="" placeholder="请输入收款账户户名" class="box_flex"  v-model="postdata.gatheroutgname"  :readonly="dataAbled">
+            <input type="text" name="" value="" placeholder="请输入收款账户户名" class="box_flex"  v-model="postdata.gatheroutgname"  :readonly="true">
         </li>
         <li>
             <label>还款卡号</label>
             <input type="text" name="" value="" placeholder="请输入还款卡号" class="box_flex"  v-model="postdata.paymentcardid"  maxlength="50" :readonly="dataAbled">
+        </li>
+        <li @click="paymentcardbankshow()">
+            <label>还款行</label>
+            <input type="text" name="" :value="getdicname('paymentcardbank',postdata.paymentcardbank)" class="box_flex" placeholder="请选择还款行" readonly="true">
+            <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
         </li>
     </ul>
                 
@@ -230,6 +229,9 @@ export default{
                 }
             if(bool){
                 if(vm.postdata.loanterm){
+                    if(vm.postdata.loanterm==4){
+                        return;
+                    }
                     vm.postdata.loanterm++;
                 }else{
                     vm.postdata.loanterm=1;
@@ -331,6 +333,15 @@ export default{
                   });
                 return false;
               }
+              var reg = /\d+/;
+              if(!reg.test(postdata.gatheringcardid)){
+                 Toast({
+                    message: '请输入正确的收款卡号',
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                 return;
+              }
 
               if(!postdata.paymentcardbank){
                 Toast({
@@ -357,6 +368,16 @@ export default{
                     duration: 1500
                   });
                 return false;
+              }
+
+              var reg = /\d+/;
+              if(!reg.test(postdata.paymentcardid)){
+                 Toast({
+                    message: '请输入正确的还款卡号',
+                    position: 'bottom',
+                    duration: 1500
+                  });
+                 return;
               }
 
               
@@ -386,7 +407,12 @@ export default{
           vm.role.role = userMesArray[1]; 
           vm.role.user_id = userMesArray[0];
         for(var x in vm.postdata){
-                vm.postdata[x] = this.getData(x);
+                if('gatheroutgname'===x){
+                    vm.postdata[x] = this.getData('customername');
+                }else{
+                   vm.postdata[x] = this.getData(x); 
+                }
+                
             }
         vm.dataAbled = this.getData('dataAbled');
         this.initSelect();
@@ -400,35 +426,10 @@ export default{
                 
                 var vm = this;
                 if(!vm.dataAbled){
-                    var loanterm = curVal.loanterm;
-                    if(loanterm){
-                        var reg = /^(0|[1-9][0-9]*)$/;
-                        if(reg.test(loanterm)){
-                            if(loanterm>100){
-                                vm.postdata.loanterm=0;
-                                Toast({
-                                    message: "意向贷款期限不能大于100年",
-                                    position: 'bottom',
-                                    duration: 1500
-                                  });
-                            }else{
-                                vm.extend(vm.postdata);
-                            }
-                        }else{
-                            vm.postdata.loanterm=0;
-                            Toast({
-                                    message: "请填入正确的意向贷款期限",
-                                    position: 'bottom',
-                                    duration: 1500
-                                  });
-                        }
-                        
-                    }else{
-                       vm.extend(vm.postdata); 
-                    }
-                }
+                    vm.extend(vm.postdata);
                 
-              },
+              }
+          },
         　　　deep:true
         }
     }

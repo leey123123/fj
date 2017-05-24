@@ -60,10 +60,11 @@
        </div>
        <div class="popup-input-group">
             <h4>录入时间</h4>
-            <div class="box_box">
-                <input type="date" name="" class="search-inputs box_flex" value=""  v-model="search.startdate">
+            <div class="box_box" style="width: 3.3rem">
+              <a @click="showBDate"><sdate tip="请选择"  v-model="search.startdate" ref="btime" ></sdate> </a>
+                    
                 <div class="input-link box_vam"><span class="chicon-input-link">-</span></div>
-                <input type="date" name="" class="search-inputs box_flex" value=""  v-model="search.enddate">
+              <a @click="showEDate"><sdate tip="请选择"  v-model="search.enddate" ref="etime"></sdate></a>   
             </div>
        </div>
        <div class="popup-btn-search">
@@ -82,6 +83,10 @@
 export default{
   data:function(){
     return{
+      sdate:{
+        bshow:false,
+        eshow:false
+      },
       role:{
         role:'',
         user_id:''
@@ -111,6 +116,36 @@ export default{
     };
   },
   methods:{
+    showBDate:function(){
+      if(!this.sdate.bshow){
+        this.$refs.btime.open();
+        this.sdate.bshow=true; 
+        if(this.sdate.eshow){
+          this.$refs.etime.close();
+          this.sdate.eshow=false;
+        }
+        
+      }else{
+        this.$refs.btime.close();
+        this.sdate.bshow=false;
+      }
+        
+
+    },
+    showEDate:function(){
+       if(!this.sdate.eshow){
+        this.$refs.etime.open();
+        this.sdate.eshow=true; 
+        if(this.sdate.bshow){
+          this.$refs.btime.close();
+          this.sdate.bshow=false;
+        }
+        
+      }else{
+        this.$refs.etime.close();
+        this.sdate.eshow=false;
+      } 
+    },
     cancelOrder:function(){
         var applyid = this.choiceCancel;
         var url = this.$baseRoot+"ChannelAccessAction?function=RepealApply";
@@ -148,6 +183,18 @@ export default{
     },
     showSearchFunc:function(){
       this.showSearch = !this.showSearch;
+      if(!this.showSearch){
+        if(this.sdate.eshow){
+          this.$refs.etime.close();
+          this.sdate.eshow=false;
+        }
+        if(this.sdate.bshow){
+          this.$refs.btime.close();
+          this.sdate.bshow=false;
+        }
+        
+        
+      }
     },
     deleteOder:function(applyid){
       this.choiceCancel = applyid;

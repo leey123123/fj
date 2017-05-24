@@ -67,6 +67,7 @@
                 this.type = type;
             },
             add:function(){
+              sessionStorage.removeItem("addMestemp");
                this.$router.push({name:'add'});
             }
         },

@@ -13,6 +13,8 @@ import './commom/Indicator/style.css';
 import Common from './js/common'
 import contants from './js/contants'
 import CryptoJS from './js/aes_2';
+import mdate from './components/common/mdate';
+import sdate from './components/common/sdate';
 
 function getCookie(name)
 {
@@ -96,7 +98,8 @@ window.Toast = Toast;
 window.Indicator = Indicator;
 window.contants = contants;
 new Common().init(Vue);
-
+Vue.component('mdate',mdate);
+Vue.component('sdate',sdate);
 
 /* eslint-disable no-new */
 new Vue({

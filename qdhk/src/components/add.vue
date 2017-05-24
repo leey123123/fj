@@ -67,15 +67,8 @@
                     <input type="text" name="" value="" v-model="applyMes.employtype" class="box_flex" readonly="true" placeholder="请选择雇佣类型">
                     <div class="apply-icon box_vam"><i class="chicon-down"></i></div>
                 </li>
-                <li>
-                    <label>证件开始日</label>
-                    <input type="date" name="" value="" class="box_flex"  v-model="applyMes.certstartdate" placeholder="请选择">
-                </li>
-                <li>
-                    <label>证件结束日</label>
-                    <input type="date" name="" value="" class="box_flex"  v-model="applyMes.certmaturitydate" placeholder="请选择">
-                </li>
-
+                  <mdate title="证件开始日" tip="请选择"  v-model="applyMes.certstartdate"></mdate>          
+                  <mdate title="证件结束日" tip="请选择"  v-model="applyMes.certmaturitydate"></mdate>
                 <li>
                     <label>发证机关所在地</label>
                     <textarea name="" style="text-align:right;" class="box_flex" v-model="applyMes.certplace" placeholder="请输入发证机关所在地"></textarea>  
@@ -400,6 +393,7 @@ export default{
               }
          
           var applyid = results[0].applyid;
+          vm.applyMes.applyid = applyid;
             var tempjson = vm.applyMes;
             var jsonto = {};
             jsonto['employeetype']  = tempjson['employtypecode'];
@@ -482,6 +476,15 @@ export default{
                   });
             return false;
           }
+          var reg = /1[0-9]{10}/;
+          if(!reg.test(this.applyMes.mobiletelephone)){
+             Toast({
+                message: '请输入正确的手机号码',
+                position: 'bottom',
+                duration: 1500
+              });
+             return;
+          }
           if(!this.applyMes.certstartdate){
             Toast({
                     message: "请输入证件开始日",
@@ -551,12 +554,17 @@ export default{
       var vm = this;
       vm.initpage();
     },
+/*    components:{
+      "mdate":mdate
+    },*/
 
     watch:{
         applyMes : {
             handler:function(curVal,oldVal){
                     var vm = this;
                     var idCard18 = curVal.certid;
+                    var certstartdate = curVal.certstartdate;
+                    var certmaturitydate = curVal.certmaturitydate;
 　　　　　　　　　　if(idCard18){
                         if(idCard18.length===18){
                           var year = idCard18.substring(6,10); 
@@ -571,8 +579,21 @@ export default{
                           this.applyMes.birthday = year+"-"+month+"-"+day;
                         }
                     }
+                    
+                    if(certstartdate && certmaturitydate){
+                      if(!vm.compareDate(certmaturitydate,certstartdate)){
+                        vm.applyMes.certmaturitydate="";
+                        vm.applyMes.certstartdate="";
+                        Toast({
+                          message: "证件结束日需大于证券开始日",
+                          position: 'bottom',
+                          duration: 1500
+                        });
+                      }
+                    }
                     var mes = JSON.stringify(vm.applyMes);
                     sessionStorage.setItem("addMestemp",mes);
+                    
 　　　　　　　　　　},
 　　　　　　　　　　deep:true
             }

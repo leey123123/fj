@@ -37,6 +37,21 @@ class Common{
         return true;
         
       }
+
+      /*比较时间大小*/
+      Vue.prototype.compareDate = function(DateOne, DateTwo) {
+          var OneMonth = DateOne.substring(5, DateOne.lastIndexOf("-"));
+          var OneDay = DateOne.substring(DateOne.length, DateOne.lastIndexOf("-") + 1);
+          var OneYear = DateOne.substring(0, DateOne.indexOf("-"));
+          var TwoMonth = DateTwo.substring(5, DateTwo.lastIndexOf("-"));
+          var TwoDay = DateTwo.substring(DateTwo.length, DateTwo.lastIndexOf("-") + 1);
+          var TwoYear = DateTwo.substring(0, DateTwo.indexOf("-"));
+          if (Date.parse(OneMonth + "/" + OneDay + "/" + OneYear) > Date.parse(TwoMonth + "/" + TwoDay + "/" + TwoYear)) {
+            return true;
+          } else {
+            return false;
+          }
+        }
       /**
        *返回 ：2需要重新登陆 0成功 1失败
        * 
