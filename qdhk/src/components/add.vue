@@ -156,6 +156,7 @@ export default{
               code:''
             },
             applyMes:{
+              applyid:'',
               employtype:'',
               employtypecode:'',
               customername:'',
