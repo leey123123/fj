@@ -19,7 +19,8 @@
 
         <li>
             <label>渠道公司手机号码</label>
-            <input type="text" name=""  class="box_flex" :value="postdata.channelteammobilephone" disabled>
+            <a  class="tela" :href="getTelHref(postdata.channelteammobilephone)">{{postdata.channelteammobilephone}}</a>
+            <!-- <input type="text" name=""  class="box_flex" :value="postdata.channelteammobilephone" disabled> -->
         </li>
 
         <li>
@@ -29,7 +30,8 @@
 
         <li>
             <label>渠道业务员电话</label>
-            <input type="text" name=""   class="box_flex" :value="postdata.channelstaffmobilephone" disabled>
+            <a  class="tela" :href="getTelHref(postdata.channelstaffmobilephone)">{{postdata.channelstaffmobilephone}}</a>
+            <!-- <input type="text" name=""   class="box_flex" :value="postdata.channelstaffmobilephone" disabled> -->
         </li>
         
     </ul>                
@@ -53,6 +55,14 @@ export default{
         
         
     },
+    methods:{
+        getTelHref:function(tel){
+            if(tel){
+                return "tel://"+tel;
+            }
+            return tel;
+        }
+    },
     created:function(){
         var vm = this;
         this.$parent.$parent.menutype=2;
@@ -70,3 +80,10 @@ export default{
 
     
 </script>
+
+<style>
+.tela{
+    position: absolute;
+    right: 0.3rem;
+}
+</style>
