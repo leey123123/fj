@@ -413,7 +413,7 @@ export default{
             var val = vm.extend(jsonto);
 
             if(val===0){
-              this.$router.push({name:'loantrial'});
+              this.$router.replace({name:'loantrial'});
             }else if(val === 2){
               this.$router.replace({name:'login'});
               return;
