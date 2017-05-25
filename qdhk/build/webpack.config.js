@@ -13,7 +13,7 @@ module.exports = {
     // 输出配置
     output: {
         // 输出路径是 myProject/output/static
-        path: path.resolve(__dirname, '../output'),
+        path: path.resolve(__dirname, '../output/qdhk'),
         publicPath: '',
         filename: '[name].[hash].js'
         /*,

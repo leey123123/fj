@@ -58,7 +58,7 @@ export default{
     methods:{
         getTelHref:function(tel){
             if(tel){
-                return "tel://"+tel;
+                return "tel:"+tel;
             }
             return tel;
         }
