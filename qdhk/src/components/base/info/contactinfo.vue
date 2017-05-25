@@ -1,6 +1,6 @@
 <template>
 <div class="tap-info" style="padding-top: .7rem;">
-    <ul class="apply-input-info changing-info">
+    <ul class="apply-input-info changing-info" v-if="ismarriage">
         <li>
             <label>配偶联系人姓名</label>
             <input type="text" name="" placeholder="请输入姓名" class="box_flex" v-model="postdata.partnername" :readonly="dataAbled">
@@ -101,7 +101,9 @@ var nofamilyship = [
 export default{
     data:function(){
         return{
+            ismarriage:true,
             postdata:{
+                    marriage:'',
                     partnername :'',//配偶联系人姓名
                     partnermobiletelephone :'',//配偶联系人手机号码
                     partnerareacode  :'',//配偶联系电话区号
@@ -185,7 +187,8 @@ export default{
         checkCondition:function(){
             var vm = this;
             var postdata = vm.postdata;
-            if(!postdata.partnername){
+            if(vm.ismarriage){
+                if(!postdata.partnername){
                 Toast({
                     message: "请填写配偶联系人姓名",
                     position: 'bottom',
@@ -202,6 +205,8 @@ export default{
                   });
                 return false;
               }
+            }
+            
 
               if(!postdata.familyname){
                 Toast({
@@ -321,6 +326,15 @@ export default{
         for(var x in vm.postdata){
                 vm.postdata[x] = this.getData(x);
             }
+        if(vm.postdata.marriage==='50'||vm.postdata.marriage==='10' || '40'=== vm.postdata.marriage){
+            vm.ismarriage = false;
+            vm.postdata.partnername ='';
+            vm.postdata.partnermobiletelephone ='';
+            vm.postdata.partnerareacode  ='';
+            vm.postdata.partnertelephone  ='';
+        }else{
+            vm.ismarriage = true;
+        }
         vm.dataAbled = this.getData('dataAbled');
         this.initSelect();
     },

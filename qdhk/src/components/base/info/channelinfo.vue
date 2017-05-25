@@ -1,10 +1,6 @@
 <template>
 <div class="tap-info" style="padding-top: .7rem;">
     <ul class="apply-input-info changing-info">
-        <li>
-            <label>渠道公司ID</label>
-            <input type="text" name="" class="box_flex" :value="postdata.channelteamid" disabled>
-        </li>
 
         <li>
             <label>渠道公司</label>
@@ -44,7 +40,6 @@ export default{
     data:function(){
         return{
             postdata:{
-                channelteamid : '',
                 channelteamname : '',
                 channelteamphone : '',
                 channelteammobilephone : '',

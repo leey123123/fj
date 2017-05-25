@@ -129,17 +129,22 @@ export default{
               return returnJson;
             }
 
-            if(!postdata.partnername){
-            returnJson.flag = false;
-              returnJson.message = "联系人信息，请填写配偶联系人姓名";
-              return returnJson;
+            var marriage = this.getData("marriage");
+            if('50'!==marriage&&'10'!==marriage&&'40'!==marriage){
+              if(!postdata.partnername){
+                returnJson.flag = false;
+                  returnJson.message = "联系人信息，请填写配偶联系人姓名";
+                  return returnJson;
+                }
+
+                if(!postdata.partnermobiletelephone){
+                returnJson.flag = false;
+                  returnJson.message = "联系人信息，请填写配偶联系人手机号码";
+                  return returnJson;
+                }
             }
 
-            if(!postdata.partnermobiletelephone){
-            returnJson.flag = false;
-              returnJson.message = "联系人信息，请填写配偶联系人手机号码";
-              return returnJson;
-            }
+            
 
             if(!postdata.familyname){
             returnJson.flag = false;
