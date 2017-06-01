@@ -22,12 +22,14 @@
   display: block;
   color: #fff;
   text-align: center;
-  margin-top: .3rem;
+  margin-top: .2rem;
   font-size: .3rem;
 }
 .mint-indicator-spin {
   display: inline-block;
   text-align: center;
+  width: 1rem;
+  height: 1rem;
 }
 .mint-indicator-mask {
   top: 0;

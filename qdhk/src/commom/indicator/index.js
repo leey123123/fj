@@ -128,7 +128,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "mint-indicator-wrapper",
     style: ({
-      'padding': _vm.text ? '20px' : '15px'
+      'padding': _vm.text ? '.3rem' : '.23rem'
     })
   }, [_c('spinner', {
     staticClass: "mint-indicator-spin",
@@ -160,14 +160,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 /***/ 204:
 /***/ function(module, exports) {
 
-module.exports = require("mint-ui/lib/spinner");
+module.exports = require("../spinner");
 
 /***/ },
 
 /***/ 205:
 /***/ function(module, exports) {
 
-module.exports = require("mint-ui/lib/spinner/style.css");
+module.exports = require("../spinner/style.css");
 
 /***/ },
 
