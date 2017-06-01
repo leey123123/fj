@@ -137,8 +137,8 @@ export default{
             }
             var vm = this;
             var data = vm.familyaddselect.adata;
-            var firstkey = key.substr(0,2);
-            var secondkey = key.substr(0,4);
+            var firstkey = key.substr(0,2)+"0000";
+            var secondkey = key.substr(0,4)+"00";
             var thirdkey = key;
             var place = '';
             for(var first in data){
