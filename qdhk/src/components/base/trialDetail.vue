@@ -357,7 +357,6 @@ var commomState =[
                           return;
                       }
                     var applymes = JSON.stringify(postjson);
-                    console.log(applymes);
                     var applymesSe = this.$Encrypt(applymes,key);
                     sessionStorage.setItem('applymes',applymesSe);
                     this.$router.push({name:'loantrial'});         

@@ -23,8 +23,8 @@
         <li>
             <label>有无子女</label>
             <div class="sex-choose box_flex">
-                <p class="box_flex" :class="{'active':postdata.childflag==='0'}"><i class="chicon-circle" @click="choiceradio('0')"></i>有</p>
-                <p  :class="{'active':postdata.childflag==='1'}"><i class="chicon-circle" @click="choiceradio('1')"></i>无</p>
+                <p class="box_flex" :class="{'active':postdata.childflag==='1'}"><i class="chicon-circle" @click="choiceradio('1')"></i>有</p>
+                <p  :class="{'active':postdata.childflag==='0'}"><i class="chicon-circle" @click="choiceradio('0')"></i>无</p>
             </div>
         </li>
         <li>

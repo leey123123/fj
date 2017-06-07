@@ -26,7 +26,6 @@ class Common{
       Vue.prototype.initdata = function(){
         var applyjson = {};
         var applyStr = JSON.stringify(applyjson); 
-        console.log(applyStr);
         var key = sessionStorage.getItem("key");
         if(!key){
           return false;
@@ -79,7 +78,6 @@ class Common{
             
           }
           var applyStr = JSON.stringify(itemJson); 
-          console.log(applyStr);
           var applymes = CryptoJS.AES.encrypt(applyStr,key).toString();
           sessionStorage.setItem('applymes',applymes);
           return 0;

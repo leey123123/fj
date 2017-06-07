@@ -126,7 +126,6 @@ export default {
                 var results = data['results'];
                 var returndata = results[0];
                 var dictStr = JSON.stringify(returndata);
-                console.log(dictStr);
                 sessionStorage.setItem('qddict',dictStr);
                 
             
