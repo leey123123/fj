@@ -1,8 +1,8 @@
 <template>
   <article id="section" class="login" >
     <hgroup class="login-hgroup">
-        <h2>客户信息尽在掌握</h2>
-        <h6>宣导宣导宣导宣导宣导宣导宣导</h6>
+        <h2>平安融e贷</h2>
+     <h6>真的容易贷</h6>
     </hgroup>
     <div class="login_input">
         <ul>
