@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project name="createjar" default="deploy" basedir=".">
+    <description>用于打包前端html</description>
+    <!-- 属性设置
+      -->
+    <property name="dist.dir" value="${basedir}/output"/>
+	<property name="dist.temp" value="${basedir}/temp"/>
+	<property name="dist" value="${basedir}/dist"/>
+
+    <target name="deploy" depends="clean" description="初始化,建立目录,复制文件">
+        <mkdir dir="${dist.temp}"/>
+		<mkdir dir="${dist}"/>
+        <copy todir="${dist.temp}/html/common">
+            <fileset dir="${dist.dir}" includes="**/*.*"/>
+        </copy>
+		<zip zipfile="${dist}/html.zip">
+			<fileset dir="${dist.temp}/html/" includes="**/*.*"/>
+		</zip>
+		<delete dir="${dist.dir}"/>
+    </target>
+    <!--  清理,删除临时目录-->
+    <target name="clean" description="清理,删除临时目录">
+        <delete dir="${dist.temp}"/>
+		<delete dir="${dist}"/>
+    </target>
+
+	
+
+</project>

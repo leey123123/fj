@@ -1,11 +1,11 @@
 {
-  "name": "qdhk",
+  "name": "fss-html",
   "version": "1.0.0",
-  "description": "渠道获客",
+  "description": "创融组webpack前端",
   "main": "index.js",
   "scripts": {
     "dev": "node build/dev-server",
-    "build": "webpack -p --display-modules --display-chunks --config build/webpack.config.js"
+    "build": "node build/build"
   },
   "author": "liyao",
   "license": "ISC",
