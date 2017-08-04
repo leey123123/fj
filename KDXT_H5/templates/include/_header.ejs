@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-orientation" content="portrait">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="applicable-device" content="mobile">
+	<title>借钱</title>
+	<link rel="stylesheet" id="app-css-link" href="<@= Utils.cdn((ctx || "")+'/css/app.css?v='+_build.ts) @>" type="text/css" />
+	<!--<link rel="stylesheet" id="app-css-link" href="<@= Utils.cdn((ctx || "")+'/css/kdxt.css?v='+_build.ts) @>" type="text/css" />-->
+	<script type="text/javascript" src="<@= Utils.cdn((ctx || "")+'/js/flexible.js') @>"></script>
+	<script type="text/javascript">
+		//<@= data.title @>
+		var _app = {
+			env : "<@= _build.env @>",
+			ctx : "<@= ctx @>",
+			version:"<@= _build.version @>",
+			ts:"<@= _build.ts @>",
+			name:"app"
+		};
+	</script>
+</head>

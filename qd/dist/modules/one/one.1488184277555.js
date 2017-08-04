@@ -1,0 +1,2 @@
+define(["angular"],function(angular){return function($scope,$http,$interval,mainService){$scope..info="kenko",mainService.test();var a=0;$interval(function(){a++,$scope.info=a},1e3)}});
+//# sourceMappingURL=one.js.map

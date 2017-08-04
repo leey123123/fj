@@ -1,0 +1,24 @@
+<script type="text/javascript" src="<@= Utils.cdn((ctx || "")+'/lib/basket.min.js?v='+_build.ts) @>"></script>
+<script type="text/javascript">
+    (function(basket){
+        // 获取缓存时间戳
+        basket.require({ url: '<@= ctx @>/js/version.js', skipCache: true }).then(function(){
+            var v = window._appver.v || _app.ts;
+            basket.require({ url: '<@= ctx @>/lib/require.js', unique: v }).then(function(){
+                basket.require({ url: '<@= ctx @>/lib/basket-loader.js', skipCache: true, key: 'basket_loader',unique:v }).then(function(){
+                    basket.require({ url: '<@= ctx @>/lib/require-config.js', unique: v }).then(function(){
+                        requirejs.config({ baseUrl: "<@= ctx @>" });
+                        <@ if(data.main){ @>
+                            <@ if(data.main instanceof Array){ _.each(data.main,function(item){ @>
+                            require(["<@= item @>"]);
+                            <@ })} else { @>
+                                require(["<@= data.main @>"]);
+                            <@ } @>
+                        <@ }else{ @> require(["C"]) <@ } @>
+                    })
+                })
+            })
+        })
+    })(basket)
+</script>
+</html>

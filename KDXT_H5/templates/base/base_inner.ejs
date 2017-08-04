@@ -1,0 +1,193 @@
+<section class="page-form">
+  <div class="header">
+      <h1 class="title">基本资料(必填)</h1>
+  </div>
+  <form class="form-wrap">
+      <ul class="fm-list">
+          <li class="item">
+              <div class="input-wrap" ng-class="nameWrapClass">
+                  <lablel class="label">姓名</lablel>
+                  <div class="input-box">
+                      <input type="text" class="ipt-text" name="username" 
+                      ng-model="user.name" 
+                      ng-focus="inputFocus('name','nameWrapClass')" 
+                      ng-blur="inputBlur('name','nameWrapClass')" 
+                      ng-change="inputChange('name','nameWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{nameError}}</p>
+                  <span class="icon">
+                      <i class="i i-ipt-delete" ng-click="inputClear('name','nameWrapClass')"></i>
+                      <i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li class="item">
+              <div class="input-wrap" ng-class="userIdWrapClass">
+                  <lablel class="label">身份证号</lablel>
+                  <div class="input-box">
+                      <input type="text" class="ipt-text" name="userId" 
+                      ng-model="user.id" 
+                      ng-focus="inputFocus('id','userIdWrapClass')" 
+                      ng-blur="inputBlur('id','userIdWrapClass')" 
+                      ng-change="inputChange('id','userIdWrapClass')" maxlength="18"/>
+                  </div>
+                  <p class="error-tips">{{userIdError}}</p>
+                  <span class="icon">
+                      <i class="i i-ipt-delete" ng-click="inputClear('id','userIdWrapClass')"></i>
+                      <i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li class="item">
+              <div class="input-wrap select" ng-class="marriageWrapClass">
+                  <lablel class="label">婚姻状况</lablel>
+                  <div class="input-box">
+                    <input type="text" readonly="true" id="marriage" scroller-select 
+                      ng-model="user.marriage.label" 
+                      list-items = "maritalStatus" 
+                      ng-change="selectChange('marriage','marriageWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{marriageError}}</p>
+                  <span class="icon">
+                  <i class="i i-ipt-select"></i><i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li class="item">
+              <div class="input-wrap select" ng-class="educationWrapClass">
+                  <lablel class="label">教育程度</lablel>
+                  <div class="input-box">
+                      <input type="text" readonly="true" id="education" scroller-select 
+                      ng-model="user.education.label" 
+                      list-items="educationStatus" 
+                      ng-change="selectChange('education','educationWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{educationError}}</p>
+                  <span class="icon">
+                    <i class="i i-ipt-select"></i><i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li class="item">
+              <div class="input-wrap select" ng-class="hukoCityWrapClass">
+                  <lablel class="label">户口所在城市</lablel>
+                  <div class="input-box">
+                    <input type="text" readonly="true" id="hukoCitySelect" scroller-select='city' 
+                      ng-model="user.hukoCity.showName"
+                      ng-change="selectChange('hukoCity','hukoCityWrapClass')" />
+                  </div>
+
+                  <p class="error-tips">{{hukoCityError}}</p>
+                  <span class="icon"><i class="i i-ipt-select"></i><i class="i i-ipt-error"></i></span>
+              </div>
+          </li>
+          <li class="item">
+              <div class="input-wrap select" ng-class="liveCityWrapClass">
+                  <lablel class="label">现居住城市</lablel>
+                  <div class="input-box">
+
+                    <input type="text" readonly="true" id="liveCitySelect" scroller-select='city'
+                      ng-model="user.liveCity.showName" 
+                      ng-change="selectChange('liveCity','liveCityWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{liveCityError}}</p>
+                  <span class="icon"><i class="i i-ipt-select"></i><i class="i i-ipt-error"></i></span>
+              </div>
+          </li>
+          <li class="button">
+            <button type="button" class="u-btn u-btn-main" ng-click="submitData($event)">保存</button>
+          </li>
+      </ul>
+  </form>
+</section>
+
+
+
+<!-- <section class="clear">
+<form action="">
+  <div class="y-info-t padding">
+    <h1>基本资料</h1>
+  </div>
+  <div class="y-main margin-b">
+    <div class="y-link">
+      <div class="padding y-info">
+        <label for="" class="y-base-lebal">姓名</label>
+        <div class="y-text">
+          <input type="text" placeholder="请填写您的真实姓名" ng-model="user.name"/>
+        </div>
+      </div>
+    </div>
+    <div class="y-link">
+      <div class="padding y-info">
+        <label for="" class="y-base-lebal">身份证</label>
+        <div class="y-text">
+          <input type="text" placeholder="请填写您的身份证号码" ng-model="user.id"/>
+        </div>
+        <div class="y-icon y-error hide"></div>
+      </div>
+    </div>
+    <div class="y-link">
+      <div class="padding y-info">
+        <label for="" class="y-base-lebal">婚姻状况</label>
+        <div class="y-text y-arrow-r">
+          <select class="y-select" ng-model="user.marriage" ng-options="marriage.label for marriage in maritalStatus track by marriage.name" ng-change="marriageChanged(user.marriage)">
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="y-link">
+      <div class="padding y-info">
+        <label for="" class="y-base-lebal">教育程度</label>
+        <div class="y-text y-arrow-r">
+          <select class="y-select" ng-model="user.education" ng-options="education.label for education in educationStatus track by education.name" ng-change="educationChanged(user.education)">
+            <option value="chuzhong">初中</option>
+            <option value="gaozhong">高中</option>
+            <option value="dazhuan">大专</option>
+            <option value="benke">本科</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="y-link">
+      <span ng-click="toCity('huko')" class="y-mean">
+        <div class="padding y-info">
+          <div class="y-text">户口所在城市</div>
+          <span class="y-text-r">{{user.hukoCity.name}}</span>
+          <div class="y-arrow-r"></div>
+        </div>
+      </span>
+      <span ng-click="toCity('huko')" class="y-mean y-border-l">
+        <div class="padding y-info">
+          <div class="y-text">行政区</div>
+          <span class="y-text-r">{{user.hukoArea.name}}</span>
+          <div class="y-arrow-r"></div>
+        </div>
+      </span>
+    </div>
+    <div class="y-link">
+      <span ng-click="toCity('live')" class="y-mean">
+        <div class="padding y-info">
+          <div class="y-text">现居住地城市</div>
+          <span class="y-text-r">{{user.liveCity.name}}</span>
+          <div class="y-arrow-r"></div>
+        </div>
+      </span>
+      <span ng-click="toCity('live')" class="y-mean y-border-l">
+        <div class="padding y-info">
+          <div class="y-text">行政区</div>
+          <span class="y-text-r">{{user.liveArea.name}}</span>
+          <div class="y-arrow-r"></div>
+        </div>
+      </span>
+    </div>
+    
+  </div>
+  
+  <div class="padding">
+    <button class="y-savebtn" ng-click="submitData($event)">保存</button>
+  </div>
+</form>
+</section> -->
+
+<!--loadding-->
+<div class="load-cover" ng-show="loading"><div class="loading"></div></div>

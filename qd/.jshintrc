@@ -1,0 +1,28 @@
+{ 
+    "boss":false,
+    "sub":true, 
+    "strict": true, 
+    "undef": true, 
+    "eqeqeq": true, 
+    "eqnull": true, 
+    "regexp":true, 
+    "asi": false, 
+    "newcap": true, 
+    "immed": true, 
+    "curly": false, 
+    "expr":true, 
+    "noempty":true,
+     
+     
+    "noarg": true,      
+  
+    "devel": true,
+    "node": true, 
+    "browser": true 
+
+    //"predef": [
+     //   "require",
+     //   "define",
+     //   "notify"
+   //]
+}

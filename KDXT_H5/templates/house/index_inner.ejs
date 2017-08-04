@@ -1,0 +1,172 @@
+<section class="page-form">
+    <div class="header">
+        <h1 class="title">房产信息(必填)</h1>
+    </div>
+    <form class="form-question-wrap">
+        <ul class="fm-list">
+            <li>
+                <dl class="question-select">
+                    <dt>有无房产?</dt>
+                    <dd>
+                        <ul class="question-list">
+                            <li>
+                              <label>
+                                <span class="radio-check">
+                                  <input type="radio" name="house" ng-value="1" ng-model="user.house" />
+                                  <i class="i i-radio"></i>
+                                </span> 有本地房产</label>
+                            </li>
+                            <li>
+                              <label>
+                                <span class="radio-check">
+                                  <input type="radio" name="house" ng-value="2" ng-model="user.house" />
+                                  <i class="i i-radio"></i>
+                                </span> 有外地房产</label>
+                            </li>
+                            <li>
+                              <label>
+                                <span class="radio-check">
+                                  <input type="radio" name="house" ng-value="0" ng-model="user.house" />
+                                  <i class="i i-radio"></i>
+                              </span> 无房产</label></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+            <li class="item" ng-show="user.house">
+              <div class="input-wrap select" ng-class="houseCityWrapClass">
+                  <lablel class="label">房产所在城市</lablel>
+                  <div class="input-box">
+                      <input type="text" readonly="true" id="houseCitySelect" scroller-select='city' 
+                      ng-model="user.houseCity.showName"
+                      ng-change="selectChange('houseCity','houseCityWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{houseCityError}}</p>
+                  <span class="icon"><i class="i i-ipt-select"></i><i class="i i-ipt-error"></i></span>
+              </div>
+          </li>
+          <li class="item" ng-show="user.house">
+              <div class="input-wrap select" ng-class="housePropertyWrapClass">
+                  <lablel class="label">房产性质</lablel>
+                  <div class="input-box">
+                      <input type="text" readonly="true" id="houseProperty" scroller-select 
+                      ng-model="user.houseProperty.label" 
+                      list-items="houseProperties" 
+                      ng-change="selectChange('houseProperty','housePropertyWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{housePropertyError}}</p>
+                  <span class="icon">
+                    <i class="i i-ipt-select"></i><i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li ng-show="user.house" style="border-top:#d7d7d7 1px solid;margin-top:0.5rem;">
+            <dl class="question-select">
+                <dt>是否有房贷？</dt>
+                <dd>
+                    <ul class="question-list">
+                        <li>
+                          <label>
+                            <span class="radio-check">
+                              <input type="radio" name="loan" ng-value="1" ng-model="user.loan" />
+                              <i class="i i-radio"></i>
+                            </span> 有</label>
+                        </li>
+                        <li>
+                          <label>
+                            <span class="radio-check">
+                              <input type="radio" name="loan" ng-value="0" ng-model="user.loan" />
+                              <i class="i i-radio"></i>
+                          </span> 无</label></li>
+                    </ul>
+                </dd>
+            </dl>
+          </li>
+          <li ng-show="user.house&&user.loan">
+            <dl class="question-select">
+                <dt>当前是否已结清？</dt>
+                <dd>
+                    <ul class="question-list">
+                        <li>
+                          <label>
+                            <span class="radio-check">
+                              <input type="radio" name="loanFinish" ng-value="1" ng-model="user.loanFinish" />
+                              <i class="i i-radio"></i>
+                            </span> 已结清</label>
+                        </li>
+                        <li>
+                          <label>
+                            <span class="radio-check">
+                              <input type="radio" name="loanFinish" ng-value="0" ng-model="user.loanFinish" />
+                              <i class="i i-radio"></i>
+                          </span> 未结清</label></li>
+                    </ul>
+                </dd>
+            </dl>
+          </li>
+          <li class="button">
+            <button type="button" class="u-btn u-btn-main" ng-click="houseSubmit($event)">保存</button>
+          </li>
+        </ul>
+    </form>
+</section>
+
+
+<!-- <header class="y-header padding margin-b">
+  <div class="y-logo"></div>
+</header>
+<section class="clear">
+<form action="">
+  <div class="y-info-t padding">
+    <h1>房产信息</h1>
+    认证信息越完善，办理速度越快！
+  </div>
+  <div class="y-main margin-b">
+    <div class="y-link padding y-info">
+      <div class="y-text">本地有房产</div>
+      <input class="y-switch" type="checkbox" ng-model="user.house">
+    </div>
+    <div class="y-link" ng-show="user.house">
+      <span ng-click="toCity()" class="y-mean">
+        <div class="padding y-info">
+          <div class="y-text">房产所在城市</div>
+          <span class="y-text-r">{{user.houseCity}}</span>
+          <div class="y-arrow-r"></div>
+        </div>
+      </span>
+      <span ng-click="toCity()" class="y-mean y-border-l" ng-show="user.house">
+        <div class="padding y-info">
+          <div class="y-text">行政区</div>
+          <span class="y-text-r">{{user.houseArea}}</span>
+          <div class="y-arrow-r"></div>
+        </div>
+      </span>
+    </div>
+    
+    <div class="clear y-link" ng-show="user.house">
+      <div class="padding y-info">
+        <label for="" class="y-base-lebal">房产性质</label>
+        <div class="y-text y-arrow-r">
+          <select class="y-select" ng-model="user.houseProperty" ng-options="housePropertiy.label for housePropertiy in houseProperties track by housePropertiy.name">
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="y-link padding y-info" ng-show="user.house">
+      <div class="y-text">曾经办理房贷</div>
+      <input class="y-switch" type="checkbox" checked="checked" ng-model="user.loan">
+    </div>
+    <div class="y-link padding y-info" ng-show="user.house&&user.loan">
+      <div class="y-text">当前是否已结清</div>
+      <input class="y-switch" type="checkbox" checked="checked" ng-model="user.loanFinish">
+    </div>
+  </div>
+  
+  <div class="padding">
+    <button class="y-savebtn" ng-click="houseSubmit($event)">保存</button>
+  </div>
+</form>
+</section> -->
+
+<!--loadding-->
+<div class="load-cover" ng-show="loading"><div class="loading"></div></div>

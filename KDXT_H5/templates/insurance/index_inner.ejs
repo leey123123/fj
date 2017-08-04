@@ -1,0 +1,106 @@
+<section class="page-form">
+    <div class="header">
+        <h1 class="title">保单信息(选填)</h1>
+    </div>
+    <form class="form-question-wrap">
+        <ul class="fm-list">
+            <li>
+                <dl class="question-select">
+                    <dt>有无保单？</dt>
+                    <dd>
+                        <ul class="question-list">
+                            <li>
+                              <label>
+                                <span class="radio-check">
+                                  <input type="radio" name="insurance" ng-value="1" ng-model="user.insurance" />
+                                  <i class="i i-radio"></i>
+                                </span> 有</label>
+                            </li>
+                            <li>
+                              <label>
+                                <span class="radio-check">
+                                  <input type="radio" name="insurance" ng-value="0" ng-model="user.insurance" />
+                                  <i class="i i-radio"></i>
+                              </span> 无</label></li>
+                        </ul>
+                    </dd>
+                </dl>
+          </li>
+          <li class="item" ng-show="user.insurance">
+              <div class="input-wrap select" ng-class="insuranceCompanyWrapClass">
+                  <lablel class="label">保险公司名称</lablel>
+                  <div class="input-box">
+                      <input type="text" readonly="true" id="insuranceCompany" scroller-select 
+                      ng-model="user.insuranceCompany.label" 
+                      list-items = "insuranceCompanies" 
+                      ng-change="selectChange('insuranceCompany','insuranceCompanyWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{insuranceCompanyError}}</p>
+                  <span class="icon">
+                  <i class="i i-ipt-select"></i><i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li ng-show="user.insurance" style="border-top:#d7d7d7 1px solid;margin-top:0.5rem;">
+            <dl class="question-select">
+                <dt>当前是否有效？</dt>
+                <dd>
+                    <ul class="question-list">
+                        <li>
+                          <label>
+                            <span class="radio-check">
+                              <input type="radio" name="valid" ng-value="1" ng-model="user.valid" />
+                              <i class="i i-radio"></i>
+                            </span> 是</label>
+                        </li>
+                        <li>
+                          <label>
+                            <span class="radio-check">
+                              <input type="radio" name="valid" ng-value="0" ng-model="user.valid" />
+                              <i class="i i-radio"></i>
+                          </span> 否</label></li>
+                    </ul>
+                </dd>
+            </dl>
+          </li>
+          <li class="button">
+            <button type="button" class="u-btn u-btn-main" ng-click="insuranceSubmit($event)">保存</button>
+          </li>
+        </ul>
+    </form>
+</section>
+
+<!-- <header class="y-header padding margin-b">
+  <div class="y-logo"></div>
+</header>
+<section class="clear">
+<form action="">
+  <div class="y-info-t padding">
+    <h1>保单信息(选填)</h1>
+    认证信息越完善，办理速度越快！
+  </div>
+  <div class="y-main margin-b">
+    <div class="y-link padding y-info">
+      <div class="y-text">有保单</div>
+      <input class="y-switch" type="checkbox" ng-model="user.insurance">
+    </div>
+    <div class="y-link" ng-show="user.insurance">
+      <div class="padding y-info">
+        <label for="" class="y-base-lebal y-lebal-long">保险公司名称</label>
+        <div class="y-text y-arrow-r">
+        <select class="y-select" ng-model="user.insuranceCompany" ng-options="insuranceCompany.label for insuranceCompany in insuranceCompanies track by insuranceCompany.name">
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="y-link padding y-info" ng-show="user.insurance">
+      <div class="y-text">当前是否有效</div>
+      <input class="y-switch" type="checkbox" checked="checked" ng-model="user.valid">
+    </div>
+  </div>
+  
+  <div class="padding">
+    <button class="y-savebtn" ng-click="insuranceSubmit($event)">保存</button>
+  </div>
+</form>
+</section> -->

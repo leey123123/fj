@@ -1,0 +1,143 @@
+<section class="index-main">
+    <div class="banner"><img src="../images/index_banner.jpg" alt="融E贷, 贷款如此简单" /></div>
+    <ul class="flexbox brand">
+        <li class="flex"><i class="i i-brand i-brand-1"></i> <p>无抵押</p></li>
+        <li class="flex"><i class="i i-brand i-brand-1"></i> <p>纯信用</p></li>
+        <li class="flex"><i class="i i-brand i-brand-1"></i> <p>免担保</p></li>
+    </ul>
+
+    <form class="form-wrap">
+      <ul class="fm-list">  
+          <li class="item">
+              <div class="input-wrap" ng-class="phoneWrapClass">
+                  <lablel for="phone" class="label">请输入手机号码</lablel>
+                  <div class="input-box">
+                      <input type="tel" class="ipt-text" name="user_phone" id="phone" value="" maxlength="11" 
+                      ng-model="phone" 
+                      ng-focus="inputFocus('phone','phoneWrapClass')" 
+                      ng-blur="inputBlur('phone','phoneWrapClass')" 
+                      ng-change="inputChange('phone','phoneWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{phoneError}}</p>
+                  <span class="icon">
+                      <i class="i i-ipt-delete" ng-click="inputClear('phone','phoneWrapClass')"></i>
+                      <i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li class="button">
+            <button type="button" class="u-btn u-btn-primary" id="apply-btn" ng-click="sendCode()">立即申请</button>
+          </li>
+      </ul>
+  </form>
+
+</section>
+
+
+<section class="brand-intro mt-2">
+    <div class="hd"><h1>融e贷</h1></div>
+      <div class="bd">
+        <h4>贷款如此简单</h4>
+        <p>大品牌：世界500强中国平安集团旗下产品；</p>
+        <p>额度高：最高额度可达50万；</p>
+        <p>门槛低：月入4000即可申请；</p>
+        <p>无抵押：1次上门即可获贷;</p>
+        <p>速度快：快至1天到账，解燃眉之急！</p>
+        <ul class="flexbox brand">
+          <li class="flex"><i class="i i-brand i-brand-4"></i> <p>丰富的产品<br />宽广的用途</p></li>
+          <li class="flex"><i class="i i-brand i-brand-5"></i> <p>简单的流程<br />便捷的操作</p></li>
+          <li class="flex"><i class="i i-brand i-brand-6"></i> <p>专业的服务<br />极致的体验</p></li>
+      </ul>
+      </div>
+</section>
+
+<!--弹出层-->
+<div class="overlayer" ng-show="modal || modalId || tally">
+    <!--验证手机号-->
+    <div class="dialog" id="yz-phone" ng-show="modal" ng-class="modalClass">
+        <div class="hd">
+            <div class="left"><a ng-click="closeModal()" class="u-btn u-btn-link" href="javascript:void(0);">取消</a></div>
+            <div class="title">验证手机</div>
+            <div class="right"><a ng-click="sendPhone()" class="u-btn u-btn-link" href="javascript:void(0);">确定</a></div>
+        </div>
+        <div class="bd">
+            <form class="form-wrap">
+                <ul class="fm-list">  
+                    <li>
+                      <p class="form-tips">短信验证码已发送到{{phone}}</p>
+                    </li>
+                    <li class="item">
+                        <div class="input-wrap" ng-class="validCodeWrapClass">
+                            <lablel for='validCode' class="label">请输入验证码</lablel>
+                            <div class="input-box">
+                                <input type="text" class="ipt-text" id="validCode" name="validCode" 
+                                ng-model="validCode" 
+                                ng-focus="inputFocus('validCode','validCodeWrapClass')" 
+                                ng-blur="inputBlur('validCode','validCodeWrapClass')" 
+                                ng-change="inputChange('validCode','validCodeWrapClass')" />
+                            </div>
+                            <p class="error-tips">{{validCodeError}}</p>
+                            <span class="icon">
+                                <i class="i i-ipt-delete" ng-click="inputClear('validCode','validCodeWrapClass')"></i>
+                                <i class="i i-ipt-error"></i>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="mt-2"><p class="form-tips-s">若未收到验证码，<span id="second"></span>{{time}}s后重新发送</p></li>
+                    <li class="button">
+                      <button type="button" class="u-btn u-btn-main" name="confirm" id="confirm-btn" ng-click="sendPhone()">确认</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 验证身份证 -->
+
+    <div class="dialog" id="yz-sf" ng-show="modalId" ng-class="modalIdClass">
+        <div class="hd">
+            <div class="left"><a ng-click="closeModal()" class="u-btn u-btn-link" href="javascript:void(0);">取消</a></div>
+            <div class="title">验证身份证号码</div>
+            <div class="right"><a ng-click="submitId()" class="u-btn u-btn-link" href="javascript:void(0);">确定</a></div>
+        </div>
+        <div class="bd">
+            <form class="form-wrap">
+                <ul class="fm-list">  
+                    <li>
+                      <p class="form-tips">您长期未登录，为保障您的信息安全，请填写您 的身份证号</p>
+                    </li>
+                    <li class="item">
+                        <div class="input-wrap" ng-class="userIdWrapClass">
+                            <lablel for="personId" class="label">请输入身份证号</lablel>
+                            <div class="input-box">
+                                <input type="text" class="ipt-text" id="personId" name="personId" ng-model="personId" 
+                                ng-focus="inputFocus('personId','userIdWrapClass')" 
+                                ng-blur="inputBlur('personId','userIdWrapClass')" 
+                                ng-change="inputChange('personId','userIdWrapClass')" />
+                            </div>
+                            <p class="error-tips">{{idError}}</p>
+                            <span class="icon">
+                                <i class="i i-ipt-delete" ng-click="inputClear('personId','userIdWrapClass')"></i>
+                                <i class="i i-ipt-error"></i>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="button">
+                      <button type="button" class="u-btn u-btn-main" ng-class="submitIdClass" name="submit" id="confirm-sf" ng-click="submitId()">立即认证</button>
+                      </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+
+    <!--身份证不符-->
+    <div class="dialog" ng-show="tally" ng-class="tallyClass">
+        <div class="dialog-alert-content">身份证不符！您填写的身份证与该手机 号注册时填写不一致，请使用其他手机号申请办理</div>
+        <div class="dialog-button"><button ng-click="closeModal()" type="button" class="u-btn u-btn-default" name="">我知道了</button></div>
+    </div>
+
+</div>
+
+    
+<!--loadding-->
+<div class="load-cover" ng-show="loading"><div class="loading"></div></div>

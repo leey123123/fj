@@ -1,0 +1,22 @@
+前端架构：
+
+	1.页面使用ejs本地模板引擎进行本地SSI，不允许在web目录下写html文件，只能在template目录下写ejs文件，ejs页面能够直接访问
+
+	2.前端架构：zepto + require + gulp + ejs + underscore + knockout。
+
+
+
+开发说明：
+
+	1.在https://cnsz023233.paicdom.local/svn/PAEM/trunk/iLoan_anydoor/H5/tools下获取node.zip、gulp-cli.zip，分别解压到D:
+
+	2.在系统环境变量配置Path，添加node目录以及gulp-cli\bin到path变量中。
+
+	3.下载代码，使用gulp进行开发
+
+
+grunt相关指令：
+
+	gulp build -env FAT/UAT/PRD  构建项目，把项目进行一次构建工作
+
+	gulp watch 监听文件修改 并编译less

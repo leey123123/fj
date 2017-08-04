@@ -1,0 +1,129 @@
+<section class="page-form">
+  <div class="header">
+      <h1 class="title">职业信息(必填)</h1>
+  </div>
+  <form class="form-wrap">
+      <ul class="fm-list">
+          <li class="item">
+              <div class="input-wrap" ng-class="companyWrapClass">
+                  <lablel class="label">工作单位名称</lablel>
+                  <div class="input-box">
+                      <input type="text" class="ipt-text" name="company" 
+                      ng-model="user.company" 
+                      ng-focus="inputFocus('company','companyWrapClass')" 
+                      ng-blur="inputBlur('company','companyWrapClass')" 
+                      ng-change="inputChange('company','companyWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{companyError}}</p>
+                  <span class="icon">
+                      <i class="i i-ipt-delete" ng-click="inputClear('company','companyWrapClass')"></i>
+                      <i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li class="item">
+              <div class="input-wrap select" ng-class="companyPropertyWrapClass">
+                  <lablel class="label">单位性质</lablel>
+                  <div class="input-box">
+                      <input type="text" readonly="true" id="companyProperty" scroller-select 
+                      ng-model="user.companyProperty.label" 
+                      list-items = "companyProperties" 
+                      ng-change="selectChange('companyProperty','companyPropertyWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{companyPropertyError}}</p>
+                  <span class="icon">
+                  <i class="i i-ipt-select"></i><i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li class="item">
+              <div class="input-wrap select" ng-class="seniorityWrapClass">
+                  <lablel class="label">现单位工龄</lablel>
+                  <div class="input-box">
+                    <input type="text" readonly="true" id="seniority" scroller-select 
+                      ng-model="user.seniority.label" 
+                      list-items = "seniorities" 
+                      ng-change="selectChange('seniority','seniorityWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{seniorityError}}</p>
+                  <span class="icon">
+                  <i class="i i-ipt-select"></i><i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li class="item">
+              <div class="input-wrap select" ng-class="typeWrapClass">
+                  <lablel class="label">职务类型</lablel>
+                  <div class="input-box">
+                    <input type="text" readonly="true" id="type" scroller-select 
+                      ng-model="user.type.label" 
+                      list-items = "types" 
+                      ng-change="selectChange('type','typeWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{typeError}}</p>
+                  <span class="icon">
+                  <i class="i i-ipt-select"></i><i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li class="item">
+              <div class="input-wrap select" ng-class="incomeWrapClass">
+                  <lablel class="label">月收入</lablel>
+                  <div class="input-box">
+                    <input type="text" readonly="true" id="income" scroller-select 
+                      ng-model="user.income.label" 
+                      list-items = "incomes" 
+                      ng-change="selectChange('income','incomeWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{incomeError}}</p>
+                  <span class="icon">
+                  <i class="i i-ipt-select"></i><i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <li class="item">
+              <div class="input-wrap select" ng-class="payTypeWrapClass">
+                  <lablel class="label">工资发放形式</lablel>
+                  <div class="input-box">
+                     <input type="text" readonly="true" id="payType" scroller-select 
+                      ng-model="user.payType.label" 
+                      list-items = "payTypes" 
+                      ng-change="selectChange('payType','payTypeWrapClass')" />
+                  </div>
+                  <p class="error-tips">{{payTypeError}}</p>
+                  <span class="icon">
+                  <i class="i i-ipt-select"></i><i class="i i-ipt-error"></i>
+                  </span>
+              </div>
+          </li>
+          <!-- <li class="item">
+              <div class="input-wrap select" ng-class="jobCityWrapClass">
+                  <lablel class="label">工作城市</lablel>
+                  <div class="input-box" ng-click="toCity()">
+                     <input type="text" class="ipt-text" 
+                     ng-model="jobCity" 
+                     value="{{user.jobCity.name}}" 
+                     readonly="true" />
+                  </div>
+                  <p class="error-tips">{{jobCityError}}</p>
+                  <span class="icon"><i class="i i-ipt-select"></i></span>
+              </div>
+          </li> -->
+          <li class="button">
+            <button type="button" class="u-btn u-btn-main" ng-click="jobSubmit($event)">保存</button>
+          </li>
+      </ul>
+  </form>
+</section>
+
+<div class="overlayer" ng-show="moduleNotPass">
+  <!--不符合条件提示-->
+  <div class="dialog" ng-show="moduleNotPass" ng-class="moduleNotPassClass">
+      <div class="dialog-alert-content">尊敬的客户，您好！暂未有适合您的贷款产品，欢迎您继续关注我司的其他产品!</div>
+      <div class="dialog-button"><button ng-click="closeModal()" type="button" class="u-btn u-btn-default" name="">我知道了</button></div>
+  </div>
+
+</div>
+
+<!--loadding-->
+<div class="load-cover" ng-show="loading"><div class="loading"></div></div>

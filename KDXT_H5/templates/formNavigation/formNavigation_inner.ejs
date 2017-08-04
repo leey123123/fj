@@ -1,0 +1,92 @@
+
+<section class="page-navigation">
+    <div class="flexbox header">
+        <p class="flex">请填写认证资料，立刻办理！</p>
+        <button type="button" class="u-btn u-btn-main s" ng-class="{true: '', false: ' disabled'}[submitable]" ng-click="allSubmit($event)">提交申请</button>
+        <!--如果可以提交，按钮去掉 disabled 类--> 
+    </div>
+    <ul class="nav">
+        <li>
+          <a ng-href="./#/base">
+            <p><i class="i i-nav i-nav-1"></i></p>
+            <p class="name">基本资料{{requireModule.base === 'Y'?'(必填)':'(非必填)'}}</p>
+            <span class="u-btn u-btn-default xs" ng-if="info.base[0] === 'U'">立刻填写</span>
+            <span class="u-btn u-btn-gray xs" ng-if="info.base[0] === 'V'">
+              <span class="i i-ok"></span> 已填写
+            </span>
+          </a>
+        </li>
+        <li>
+          <a ng-href="./#/job">
+            <p><i class="i i-nav i-nav-2"></i></p>
+            <p class="name">职业信息{{requireModule.career === 'Y'?'(必填)':'(选填)'}}</p>
+            <span class="u-btn u-btn-default xs" ng-if="info.career[0] === 'U'">立刻填写</span>
+            <span class="u-btn u-btn-gray xs" ng-if="info.career[0] === 'V'">
+              <i class="i i-ok"></i> 已填写
+            </span>
+          </a>
+        </li>
+        <li>
+          <a ng-href="./#/house">
+            <p><i class="i i-nav i-nav-3"></i></p>
+            <p class="name">房产信息{{requireModule.house === 'Y'?'(必填)':'(选填)'}}</p>
+            <span class="u-btn u-btn-default xs" ng-if="info.house[0] === 'U'">立刻填写</span>
+            <span class="u-btn u-btn-gray xs" ng-if="info.house[0] === 'V'">
+              <i class="i i-ok"></i> 已填写
+            </span>
+          </a>
+        </li>
+        <li>
+          <a ng-href="./#/insurance">
+            <p><i class="i i-nav i-nav-4"></i></p>
+            <p class="name">保单信息{{requireModule.insurance === 'Y'?'(必填)':'(选填)'}}</p>
+            <span class="u-btn u-btn-default xs" ng-if="info.insurance[0] === 'U'">立刻填写</span>
+            <span class="u-btn u-btn-gray xs" ng-if="info.insurance[0] === 'V'">
+              <i class="i i-ok"></i> 已填写
+            </span>
+          </a>
+        </li>
+        <li>
+          <a ng-href="./#/gold">
+            <p><i class="i i-nav i-nav-5"></i></p>
+            <p class="name">社保信息 {{info.gold == 'Y'?'(必填)':'(选填)'}}</p>
+            <span class="u-btn u-btn-default xs" ng-if="info.glod[0] === 'U'">立刻填写</span>
+            <span class="u-btn u-btn-gray xs" ng-if="info.glod[0] === 'V'">
+              <i class="i i-ok"></i> 已填写
+            </span>
+          </a>
+        </li>
+        <li></li>
+    </ul>
+
+</section>
+
+<section class="y-write-info">
+  <h4>{{productName}}</h4>
+  <p>{{productDescription}}</p>
+</section>
+
+<!--填写成功-->
+<div class="overlayer" ng-show="moduleSuccess || submitSuccess || resubmit">
+  <!--填写成功-->
+  <div class="dialog" ng-show="moduleSuccess" ng-class="moduleSuccessClass">
+      <div class="dialog-alert-content">恭喜,保单填写成功！信息填写越完整, 申请效率越高哦～</div>
+      <div class="dialog-button"><button ng-click="closeModal()" type="button" class="u-btn u-btn-default" name="">继续填写</button></div>
+  </div>
+
+  <!--提交申请成功-->
+  <div class="dialog" ng-show="submitSuccess" ng-class="submitSuccessClass">
+      <div class="dialog-alert-content">申请提交成功！我们将尽快与您联系，祝您生活愉快！</div>
+      <div class="dialog-button"><button ng-click="closeModal()" type="button" class="u-btn u-btn-default" name="">我知道了</button></div>
+  </div>
+
+  <!--已提交-->
+  <div class="dialog" ng-show="resubmit" ng-class="resubmitClass">
+      <div class="dialog-alert-content">您已经提交过申请，请勿重复提交！</div>
+      <div class="dialog-button"><button ng-click="back()" class="u-btn u-btn-default" name="">我知道了</button></div>
+  </div>
+
+</div>
+
+<!--loadding-->
+<div class="load-cover" ng-show="loading"><div class="loading"></div></div>

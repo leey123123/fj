@@ -1,0 +1,33 @@
+<@- include('include/_header.ejs', {data:{title:"版本信息"}}); @>
+<body>
+<div id="warp">
+    <section id="section">
+    	<ul class="login_list pt40">
+        <li>
+            <label class="box_vam ng-binding">应用</label>
+            <input type="text" readonly="true" value="minisys"></i>
+        </li>
+        <li>
+            <label class="box_vam ng-binding">环境</label>
+            <input type="text" readonly="true" value="<@= _build.env @>"></i>
+        </li>
+        <li>
+            <label class="box_vam ng-binding">版本</label>
+            <input type="text" readonly="true" value="<@= _build.version @>"></i>
+        </li>
+        <li>
+            <label class="box_vam ng-binding">name</label>
+            <input type="text" readonly="true" value="<@= _build.pkg.name @>"></i>
+        </li>
+        <li>
+            <label class="box_vam ng-binding">build</label>
+            <input type="text" readonly="true" value="<@= _build.ts @>"></i>
+        </li>
+    </ul>
+    	<div>
+    		
+    	</div>
+    </section>
+</div>
+</body>
+<@- include('include/_footer.ejs'); @>

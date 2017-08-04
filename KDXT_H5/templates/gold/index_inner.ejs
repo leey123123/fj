@@ -1,0 +1,66 @@
+<section class="page-form">
+    <div class="header">
+        <h1 class="title">社保信息(选填)</h1>
+    </div>
+    <form class="form-question-wrap">
+        <ul class="fm-list">
+            <li>
+                <dl class="question-select">
+                    <dt>有无本地社保?</dt>
+                    <dd>
+                        <ul class="question-list">
+                            <li>
+                              <label>
+                                <span class="radio-check">
+                                  <input type="radio" name="social" ng-value="1" ng-model="user.social" />
+                                  <i class="i i-radio"></i>
+                                </span> 有</label>
+                            </li>
+                            <li>
+                              <label>
+                                <span class="radio-check">
+                                  <input type="radio" name="social" ng-value="0" ng-model="user.social" />
+                                  <i class="i i-radio"></i>
+                              </span> 无</label></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+            <li>
+                <dl class="question-select">
+                    <dt>有无本地公积金?</dt>
+                    <dd>
+                        <ul class="question-list">
+                            <li>
+                              <label>
+                                <span class="radio-check">
+                                  <input type="radio" name="localSocial" ng-value="1" ng-model="user.localSocial" />
+                                  <i class="i i-radio"></i>
+                                </span> 有</label></li>
+                            <li>
+                              <label>
+                                <span class="radio-check">
+                                  <input type="radio" name="localSocial" ng-value="0" ng-model="user.localSocial" />
+                                  <i class="i i-radio"></i>
+                                </span> 无</label></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+            <li class="button">
+              <button type="button" class="u-btn u-btn-main" ng-click="socialSubmit($event)">保存</button>
+            </li>
+        </ul>
+    </form>
+</section>
+
+
+<div class="overlayer" ng-show="moduleNotPass">
+  <!--不符合条件提示-->
+  <div class="dialog" ng-show="moduleNotPass" ng-class="moduleNotPassClass">
+      <div class="dialog-alert-content">尊敬的客户，您好！暂未有适合您的贷款产品，欢迎您继续关注我司的其他产品!</div>
+      <div class="dialog-button"><button ng-click="closeModal()" type="button" class="u-btn u-btn-default" name="">我知道了</button></div>
+  </div>
+
+</div>
+

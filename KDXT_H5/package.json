@@ -1,0 +1,35 @@
+{
+  "name": "minisys",
+  "description": "MINI SYSTEM",
+  "link": "",
+  "version": "0.0.1",
+  "author": "Zhouyiping",
+  "repository": {},
+  "dependencies": {
+    "http-master": "^1.0.28",
+    "http-proxy": "^1.13.2",
+    "http-route-proxy": "^0.2.1",
+    "node-http-proxy": "^0.2.3",
+    "redbird": "^0.4.14"
+  },
+  "devDependencies": {
+    "amd-optimize": "*",
+    "chalk": "^1.0.0",
+    "ejs": "^2.3.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "*",
+    "gulp-ejs": "*",
+    "glob": "*",
+    "gulp-less": "*",
+    "gulp-minify-css": "*",
+    "gulp-rimraf": "*",
+    "gulp-uglify": "*",
+    "gulp-util": "*",
+    "gulp-zip": "^3.0.2",
+    "merge-stream": "*",
+    "rimraf": "*",
+    "run-sequence": "*",
+    "through2": "^0.6.3",
+    "underscore": "*"
+  }
+}
